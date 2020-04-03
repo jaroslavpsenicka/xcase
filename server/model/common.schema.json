@@ -1,0 +1,19 @@
+{
+  "$id": "http://datacase.org/schemas/common.json",
+  "definitions" : {
+
+    "Action": {
+      "type": "object",
+      "required": ["name", "componentUrl"],
+      "properties": {
+        "name": { 
+          "type": "string" 
+        },
+        "componentUrl": { 
+          "type": "string" 
+        }
+      }
+    }
+
+ }
+}
