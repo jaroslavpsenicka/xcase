@@ -38,7 +38,7 @@ Product.deleteMany({}, (err) => {
 		createdBy: 'Mary Doe',
 		spec: {
 			name: 'IHYPO', 
-			overviewComponentUrl: '',
+			overviewComponentUrl: '/ihypo-overview.js',
 			actions: {
 				create: {},
 				update: {},
@@ -48,15 +48,21 @@ Product.deleteMany({}, (err) => {
 	});	
 });
 
-const case1 = new ObjectId('000000000002');	
+const case1 = new ObjectId('000000000010');	
+const case2 = new ObjectId('000000000011');	
 Case.deleteMany({}, (err) => {	
 	if (err) throw err;
 	Case.create({ _id: case1, 
 		id: hash.encodeHex(case1.toHexString()),  
 		product: 'IHYPO', 
 		name: 'Jan Novák, byt u Muzea', 
-		status: 'SENT',
-		product: mortgage1
+		status: 'SENT'
+	});	
+	Case.create({ _id: case2, 
+		id: hash.encodeHex(case2.toHexString()),  
+		product: 'XHYPO', 
+		name: 'Mary Vomaczkowa, hacienda grande', 
+		status: 'SENT'
 	});	
 });
 
@@ -171,9 +177,7 @@ module.exports = function (app) {
 	app.get('/api/cases', (req, res) => {
 		Case.find((err, cases) => {
 			if (err) throw err;
-			res.status(200).send(cases.map(c => { 
-				return { ...c._doc, product: undefined }
-			}));
+			res.status(200).send(cases);
 		});
 	});
 

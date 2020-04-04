@@ -1,6 +1,6 @@
 {
   "name": "XHYPO", 
-  "overviewComponentUrl": "",
+  "overviewComponentUrl": "/xhypo-overview.js",
   "actions": {
     "create": {
       "name": "",

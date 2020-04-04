@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const { env } = process;
@@ -35,6 +36,7 @@ const options = {
     new LoadablePlugin(),
     new webpack.DefinePlugin(envKeys),
     new HtmlWebpackPlugin(),
+    new CopyPlugin([{ from: 'client/static/*', flatten: true }]),
     new MiniCssExtractPlugin({
       filename: '[name].[hash].css',
       chunkFilename: '[name].[hash].css'

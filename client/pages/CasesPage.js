@@ -1,77 +1,62 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import Badge from 'react-bootstrap/Badge';
-import { faStar, faAngleDown, faAngleUp, faPlus, faComment } from '@fortawesome/free-solid-svg-icons'
-import { faStar as faStarOutline, faComment as faCommentOutline} from '@fortawesome/free-regular-svg-icons'
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons'
 import Axios from 'axios'
-import { navigate } from 'hookrouter';
 import { CasesContext } from '../CasesContext';
+import { ProductsContext } from '../ProductsContext';
 
 import Loading from '../components/Loading';
 import LoadingError from '../components/LoadingError';
 import Search from '../components/Search';
 
-const SERVICE_URL = process.env.REACT_APP_SERVICE_URL || '';
-
 const CasesPage = () => {
 
   const [ cases, setCases ] = useContext(CasesContext);
+  const [ products ] = useContext(ProductsContext);
 
-  const setCaseOverview = (id, value) => {
+  const toggleOverview = (thecase) => {
     setCases(prev => { 
       return { ...prev, data: prev.data.map((row) => {
-        return row.id === id ? {...row, overview: value} : row
+        return row.id === thecase.id ? {...row, overview: !thecase.overview} : row
       })}
     });
   }
-
-  const toggleOverview = (thecase) => {
-    if (thecase.overview) {
-      setCaseOverview(thecase.id, null);
-    } else {
-      setCaseOverview(thecase.id, { loading: true });
-      Axios.get(SERVICE_URL + '/api/cases/' + thecase.id + '/overview')
-        .then(response => setCaseOverview(thecase.id, { loading: false, data: response.data }))
-        .catch(err => setCaseOverview(thecase.id, { loading: false, error: err }));
-    }
-  }
-      
+   
   const NoCases = () => (
     <div className="mt-5 text-center text-secondary">No, there are no cases of this kind.</div>
   )
 
-  const CaseStateAndActions = ({theCase}) => (
+  const CaseStateAndActions = ({theCase, enabled}) => (
     <Row className="mr-2 float-right">
-      <h5 className="ml-3"><Badge variant="secondary">{theCase.state}</Badge></h5>
       <FontAwesomeIcon icon={theCase.overview ? faAngleUp : faAngleDown} size="lg" 
         className="ml-3 cursor-pointer"
-        onClick={() => toggleOverview(theCase)}/>
+        onClick={() =>  toggleOverview(theCase)}/>
     </Row>
   )
 
   const CaseOverview = ({theCase}) => {
-    return !theCase.overview ? null :
-      theCase.overview.loading ? <Loading /> :
-      theCase.overview.error ? <LoadingError /> : (
-      <div className="pt-3 text-secondary">
-        { theCase.overview.data.map(n => 
-          <CaseOverviewProperty name={n.name} value={n.value} key={n.name} />) }
+    const CustomOverviewTag = `${theCase.product.toLowerCase()}-overview`;
+    return !theCase.overview ? null : <div className="mt-2">
+      <CustomOverviewTag />
+    </div>
+  }
+
+  const CaseRow = ({theCase}) => {
+    const enabled = products.data && products.data.find(p => p.name === theCase.product);
+    const labelClass = `text-ellipsis pr-3 mr-5 ${enabled ? 'text-primary' : 'text-secondary'}`
+    return (
+      <div className="p-2 pl-3 mb-1 bg-white text-dark">
+        { enabled ? <CaseStateAndActions theCase={theCase} /> : null }
+        <div>
+          <h5 className={labelClass}>{theCase.name}</h5>
+          <div className="text-secondary">{theCase.description ? theCase.description : 'No description.'}</div>
+        </div>
+        <CaseOverview theCase={theCase} className="mt-2"/>
       </div>
     )
   }
-
-  const CaseRow = ({theCase}) => (
-    <div className="p-2 pl-3 mb-1 bg-white text-dark">
-      <CaseStateAndActions theCase={theCase} />
-      <div>
-        <h5 className="text-primary text-ellipsis pr-3 mr-5">{theCase.name}</h5>
-        <div className="text-secondary">{theCase.description ? theCase.description : 'No description.'}</div>
-      </div>
-      <CaseOverview theCase={theCase} />
-    </div>
-  )
 
   const Cases = ({ cases }) => {
     return cases.map(c => <CaseRow theCase={c} key={c.id} />);
