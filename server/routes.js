@@ -3,7 +3,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const Product = require('./model/product');
 const Case = require('./model/case');
 const Ajv = require('ajv');
-const Swagger = require('express-swagger-generator');
+const swagger = require('express-swagger-generator');
 const config = require('./config');
 const log4js = require('log4js');
 const multer = require('multer');
@@ -18,10 +18,11 @@ const disk = multer.diskStorage({
   filename: function (req, file, cb) { cb(null, file.fieldname + '-' + Date.now())}
 });
 const upload = multer({ storage: disk });
+
+const ajv = Ajv({ allErrors: true, removeAdditional: 'all' });
 const commonSchema = require('./model/common.schema.json');
 const productSchema = require('./model/product.schema.json');
 
-const ajv = Ajv({ allErrors: true, removeAdditional: 'all' });
 ajv.addSchema(commonSchema, 'common');
 ajv.addSchema(productSchema, 'product');
 
@@ -74,6 +75,8 @@ const parseAndValidate = (payload) => {
  * @property {string} error - error description
  */
 module.exports = function (app) {
+
+	swagger(app)(config.swagger);
 
 	/**
 	 * Register product.
@@ -213,8 +216,6 @@ module.exports = function (app) {
 			});	
 		});
 	});
-
-	Swagger(app)(config.swagger);
 
 	app.get('/swagger.json', (err, res) => {
     res.status(200).json(swagger.json());

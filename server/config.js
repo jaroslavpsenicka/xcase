@@ -37,7 +37,7 @@ module.exports = {
 	},
 	swagger: {
     basedir: __dirname, 
-    files: ['./routes/**/*.js'],
+    files: ['./routes.js'],
 		swaggerDefinition: {
 			info: {    
 				title: "xCase API",
