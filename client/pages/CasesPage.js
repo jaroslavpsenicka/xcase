@@ -37,11 +37,9 @@ const CasesPage = () => {
   )
 
   const CaseStateAndActions = ({theCase, enabled}) => (
-    <Row className="mr-2 float-right">
-      <FontAwesomeIcon icon={theCase.overview ? faAngleUp : faAngleDown} size="lg" 
-        className="ml-3 cursor-pointer"
-        onClick={() =>  toggleOverview(theCase)}/>
-    </Row>
+    <div className="mr-2 float-right cursor-pointer" onClick={() => toggleOverview(theCase)}>
+      <FontAwesomeIcon icon={theCase.overview ? faAngleUp : faAngleDown} size="lg" />
+    </div>
   )
 
   const CaseRow = ({theCase}) => {
@@ -50,7 +48,7 @@ const CasesPage = () => {
     return (
       <div className="p-2 pl-3 mb-1 bg-white text-secondary">
         { product ? <CaseStateAndActions theCase={theCase} /> : null }
-        <div>
+        <div className="mr-5">
           <StyledProductImage src={ product ? product.spec.icon : '/none.svg'} />
           <h5 className={labelClass}>{theCase.name}</h5>
           <div className="text-secondary ml-5">{theCase.description ? theCase.description : 'No description.'}</div>

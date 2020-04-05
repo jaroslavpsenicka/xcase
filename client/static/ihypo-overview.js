@@ -1,6 +1,6 @@
 class IHypoOverview extends HTMLElement {
   connectedCallback () {
-    const amount = this.getAttribute('loanamount');
+    const amount = this.getAttribute('loanamount') || 0;
     const amountFmt = amount < 1000000 ? amount/1000 + 'K' : amount/1000000 + 'M';
     this.innerHTML = `Mortgage, ${amountFmt} CZK, 15 years, 2 applicants`;
   }

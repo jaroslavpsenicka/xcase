@@ -69,5 +69,6 @@ The existing code shows implementation of webcomponents-based case list using Re
 - allow registering case-type/product-specific settings component 
 - allow processing REST or Kafka-based events, for example case creation notification
 - implement better validations during JSON upload, incl. webcomponent checks,
+- think about using [shadow DOM in webcomponents](https://www.grapecity.com/blogs/using-web-components-with-react-2019)
 - think about versioning and rollbacks of misbehaving JSONs
 - think about receiving and displaying notifiations
