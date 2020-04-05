@@ -43,7 +43,7 @@ To implement an overview, a [webcomponets.org](http://webcomponents.org) should 
 ```
 class IHypoOverview extends HTMLElement {
   connectedCallback () {
-    const amount = this.getAttribute('loanamount');
+    const amount = this.getAttribute('loanamount') || 0;
     const amountFmt = amount < 1000000 ? amount/1000 + 'K' : amount/1000000 + 'M';
     this.innerHTML = `Mortgage, ${amountFmt} CZK, 15 years, 2 applicants`;
   }
@@ -69,6 +69,6 @@ The existing code shows implementation of webcomponents-based case list using Re
 - allow registering case-type/product-specific settings component 
 - allow processing REST or Kafka-based events, for example case creation notification
 - implement better validations during JSON upload, incl. webcomponent checks,
-- think about using [shadow DOM in webcomponents](https://www.grapecity.com/blogs/using-web-components-with-react-2019)
+- think about using [shadow DOM in webcomponents](https://www.grapecity.com/blogs/using-web-components-with-react-2019), [TM crash course](https://www.youtube.com/watch?v=PCWaFLy3VUo)
 - think about versioning and rollbacks of misbehaving JSONs
 - think about receiving and displaying notifiations
