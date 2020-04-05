@@ -17,7 +17,7 @@ The second case (Mary Vomaczkowa) represents a case of an unknown type. Therefor
 Every case has a unique type associated to it and may be seen as a representation of a product. There are certain attributes associated with every type:
 
 - product icon
-- a reference (url) to an overview component
+- a reference (url) to an overview, [webcomponets](http://webcomponents.org)-based component
 
 There will be more to configure, this is just a prototype.
 
@@ -38,7 +38,7 @@ Once registered, the new case type is applied immediately and the second case ge
 - components are registered by [products context](client/ProductsContext.js) during it's initialization phase (see useEffect -- a new `script` element is created, configured and attached to document body),
 - to use the component, a dynamically-named component is constructed and used as overview, see [CaseOverview](client/components/CaseOverview.js) component.
 
-To implement an overview, a [webcomponets.org](webcomponents.org) should be used. Here is an example of the [IHYPO case type overview](client/static/ihypo-overview.js). Please note, the component must be registered under appropriate name (`<type-name>-overview`).
+To implement an overview, a [webcomponets.org](http://webcomponents.org) should be used. Here is an example of the [IHYPO case type overview](client/static/ihypo-overview.js). Please note, the component must be registered under appropriate name (`<type-name>-overview`).
 
 ```
 class IHypoOverview extends HTMLElement {
