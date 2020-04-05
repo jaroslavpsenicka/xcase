@@ -20,7 +20,6 @@ const App = () => {
 
   const routes = {
     "/cases": () => <CasesPage />,
-    "/cases/:id": ({id}) => <CaseDetailPage id={id} />,
     "/products": () => <ProductsPage />
   };
 
