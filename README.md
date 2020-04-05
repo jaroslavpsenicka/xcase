@@ -43,13 +43,17 @@ To implement an overview, a [webcomponets.org](http://webcomponents.org) should 
 ```
 class IHypoOverview extends HTMLElement {
   connectedCallback () {
-    this.innerHTML = 'Mortgage, 2.1M CZK, 15 years, 2 applicants'
+    const amount = this.getAttribute('loanamount');
+    const amountFmt = amount < 1000000 ? amount/1000 + 'K' : amount/1000000 + 'M';
+    this.innerHTML = `Mortgage, ${amountFmt} CZK, 15 years, 2 applicants`;
   }
 }
 
 // register the new custom element
 customElements.define('ihypo-overview', IHypoOverview)
 ```
+
+The 'loanamount' attribute is propagated into the webcomponent from the case data in form of attribute and respective value. Checkout the [CaseOverview](client/components/CaseOverview.js) for details.
 
 > Correct, the overview is not neccesarily accurate for all the cases.
 

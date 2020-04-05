@@ -57,7 +57,10 @@ Case.deleteMany({}, (err) => {
 		id: hash.encodeHex(case1.toHexString()),  
 		product: 'ihypo', 
 		name: 'Jan Novák, byt u Muzea', 
-		status: 'SENT'
+		status: 'SENT',
+		data: {
+			loanAmount: 2100000
+		}
 	});	
 	Case.create({ _id: case2, 
 		id: hash.encodeHex(case2.toHexString()),  
@@ -178,7 +181,8 @@ module.exports = function (app) {
 	app.get('/api/cases', (req, res) => {
 		Case.find((err, cases) => {
 			if (err) throw err;
-			res.status(200).send(cases);
+			console.log(cases);
+			res.status(200).send(cases.map(c => c.toObject({ flattenMaps: true })));
 		});
 	});
 
