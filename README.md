@@ -33,7 +33,10 @@ Once registered, the new case type is applied immediately and the second case ge
 
 ![overview of cases](doc/cases-reg.png)
 
-## Overview implementation
+## Implementation notes
+
+* components are registered by [products context](client/ProductsContext.js) during it's initialization phase (see useEffect -- a new ```script``` element is created, configured and attached to document body),
+* to use the component, a dynamically-named component is constructed and used as overview, see [CaseOverview](client/components/CaseOverview.js) component.
 
 To implement an overview, a [webcomponets.org](webcomponents.org) should be used. Here is an example of the [IHYPO case type overview](client/static/ihypo-overview.js). Please note, the component must be registered under appropriate name (```<type-name>-overview```).
 
@@ -49,12 +52,6 @@ customElements.define('ihypo-overview', IHypoOverview)
 ```
 
 > correct, the overview is not neccesarily accurate for all cases
-
-## Implementation notes
-
-* components are registered by [products context](client/ProductsContext.js) during it's initialization phase (see useEffect -- a new ```script``` element is created, configured and attached to document body),
-* to use the component, a dynamically-named component is constructed and used as overview, see [CaseOverview](client/components/CaseOverview.js) component.
-
 
 ## Summary and next steps
 
