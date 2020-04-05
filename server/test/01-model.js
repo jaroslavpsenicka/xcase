@@ -40,7 +40,7 @@ describe('Product', () => {
     const contents = { name: "name" };
     request.post(file(contents), (error, response, body) => {
       expect(response.statusCode).to.equal(400);
-      expect(JSON.parse(body).error).to.equal("should have required property \'overviewComponentUrl\'");
+      expect(JSON.parse(body).error).to.equal("should have required property \'icon\'");
       done();
     });
   });
@@ -56,7 +56,7 @@ describe('Product', () => {
   });
 
   it('get the product', (done) => {
-    request.get('http://localhost:8080/api/products/HYPO', (error, response, body) => {
+    request.get('http://localhost:8080/api/products/hypo', (error, response, body) => {
       if (response.statusCode != 200) console.log(body);
       expect(response.statusCode).to.equal(200);
       product = JSON.parse(body);
@@ -73,7 +73,7 @@ describe('Product', () => {
   });
 
   it('delete it finally', (done) => {
-    request.delete('http://localhost:8080/api/products/HYPO', (error, response, body) => {
+    request.delete('http://localhost:8080/api/products/hypo', (error, response, body) => {
       if (response.statusCode != 204) console.log(body);
       expect(response.statusCode).to.equal(204);
       done();

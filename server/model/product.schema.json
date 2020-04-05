@@ -1,10 +1,13 @@
 {
   "$id": "http://datacase.org/schemas/schema.json",
   "type": "object",
-  "required": ["name", "overviewComponentUrl", "actions"],
+  "required": ["name", "icon", "overviewComponentUrl", "actions"],
   "additionalProperties": false,
   "properties": {
     "name": {
+      "type": "string"
+    },
+    "icon": {
       "type": "string"
     },
     "overviewComponentUrl": {

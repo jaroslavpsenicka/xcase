@@ -6,7 +6,7 @@ describe('Case', () => {
   var caseObject;
 
   it('find test product', done => {
-    request.get('http://localhost:8080/api/products/IHYPO' , (error, response) => {
+    request.get('http://localhost:8080/api/products/ihypo' , (error, response) => {
       if (response.statusCode != 200) console.log(response.body);
       expect(response.statusCode).to.equal(200);
       done();
@@ -60,7 +60,7 @@ describe('Case', () => {
   });
 
   it('create case, valid request', (done) => {
-    const contents = { product: 'IHYPO', loanAmount: 1000000 };
+    const contents = { product: 'ihypo', loanAmount: 1000000 };
     request.post({
       uri: 'http://localhost:8080/api/cases', 
       headers: {'Content-Type': 'application/json'},

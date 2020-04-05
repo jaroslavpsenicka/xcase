@@ -1,15 +1,23 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Row from 'react-bootstrap/Row'
-import Badge from 'react-bootstrap/Badge';
 import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons'
-import Axios from 'axios'
-import { CasesContext } from '../CasesContext';
 import { ProductsContext } from '../ProductsContext';
+import { CasesContext } from '../CasesContext';
 
 import Loading from '../components/Loading';
 import LoadingError from '../components/LoadingError';
 import Search from '../components/Search';
+import CaseOverview from '../components/CaseOverview';
+
+import styled from 'styled-components';
+
+const StyledProductImage = styled.img`
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  margin: 5px auto;
+`
 
 const CasesPage = () => {
 
@@ -36,22 +44,16 @@ const CasesPage = () => {
     </Row>
   )
 
-  const CaseOverview = ({theCase}) => {
-    const CustomOverviewTag = `${theCase.product.toLowerCase()}-overview`;
-    return !theCase.overview ? null : <div className="mt-2">
-      <CustomOverviewTag />
-    </div>
-  }
-
   const CaseRow = ({theCase}) => {
-    const enabled = products.data && products.data.find(p => p.name === theCase.product);
-    const labelClass = `text-ellipsis pr-3 mr-5 ${enabled ? 'text-primary' : 'text-secondary'}`
+    const product = products.data && products.data.find(p => p.name === theCase.product);
+    const labelClass = `text-ellipsis pr-3 ml-5 mb-0 ${product ? 'text-primary' : 'text-secondary'}`
     return (
-      <div className="p-2 pl-3 mb-1 bg-white text-dark">
-        { enabled ? <CaseStateAndActions theCase={theCase} /> : null }
+      <div className="p-2 pl-3 mb-1 bg-white text-secondary">
+        { product ? <CaseStateAndActions theCase={theCase} /> : null }
         <div>
+          <StyledProductImage src={ product ? product.spec.icon : '/none.svg'} />
           <h5 className={labelClass}>{theCase.name}</h5>
-          <div className="text-secondary">{theCase.description ? theCase.description : 'No description.'}</div>
+          <div className="text-secondary ml-5">{theCase.description ? theCase.description : 'No description.'}</div>
         </div>
         <CaseOverview theCase={theCase} className="mt-2"/>
       </div>

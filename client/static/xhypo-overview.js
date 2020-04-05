@@ -1,6 +1,6 @@
 class XHypoOverview extends HTMLElement {
   connectedCallback () {
-    this.innerHTML = 'Premium services for the super-rich!'
+    this.innerHTML = 'Premium mortgage, 74.8M CZK, 2 years'
   }
 }
 

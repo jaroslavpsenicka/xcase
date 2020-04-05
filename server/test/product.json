@@ -1,5 +1,6 @@
 {
-  "name": "XHYPO", 
+  "name": "xhypo", 
+  "icon": "/xhypo.svg",
   "overviewComponentUrl": "/xhypo-overview.js",
   "actions": {
     "create": {

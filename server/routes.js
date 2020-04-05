@@ -31,13 +31,14 @@ Product.deleteMany({}, (err) => {
 	if (err) throw err;
 	Product.create({ _id: mortgage1, 
 		id: hash.encodeHex(mortgage1.toHexString()),  
-		name: 'IHYPO', 
+		name: 'ihypo', 
 		description: 'Customer mortgage as we love it.', 
 		revision: 1, 
 		starred: true, 
 		createdBy: 'Mary Doe',
 		spec: {
-			name: 'IHYPO', 
+			name: 'ihypo', 
+			icon: '/ihypo.svg',
 			overviewComponentUrl: '/ihypo-overview.js',
 			actions: {
 				create: {},
@@ -54,13 +55,13 @@ Case.deleteMany({}, (err) => {
 	if (err) throw err;
 	Case.create({ _id: case1, 
 		id: hash.encodeHex(case1.toHexString()),  
-		product: 'IHYPO', 
+		product: 'ihypo', 
 		name: 'Jan Novák, byt u Muzea', 
 		status: 'SENT'
 	});	
 	Case.create({ _id: case2, 
 		id: hash.encodeHex(case2.toHexString()),  
-		product: 'XHYPO', 
+		product: 'xhypo', 
 		name: 'Mary Vomaczkowa, hacienda grande', 
 		status: 'SENT'
 	});	

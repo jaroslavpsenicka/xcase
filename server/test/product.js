@@ -1,5 +1,6 @@
 module.exports = {
-  name: 'HYPO', 
+  name: 'hypo', 
+  icon: '',
   overviewComponentUrl: '',
   actions: {
     create: {

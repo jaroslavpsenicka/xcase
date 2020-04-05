@@ -1,6 +1,6 @@
 class IHypoOverview extends HTMLElement {
   connectedCallback () {
-    this.innerHTML = 'Hello, this is ihypo overview!'
+    this.innerHTML = 'Mortgage, 2.1M CZK, 15 years, 2 applicants'
   }
 }
 

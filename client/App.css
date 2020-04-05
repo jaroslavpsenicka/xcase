@@ -51,4 +51,7 @@ body {
 .b-2-ddd {
     border: 2px solid #ddd;
 }
-  
+
+.ml-6 {
+    margin-left: 3.5rem !important;
+}
