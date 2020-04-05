@@ -57,8 +57,13 @@ customElements.define('ihypo-overview', IHypoOverview)
 
 The existing code shows implementation of webcomponents-based case list using React/Node. This is very basic implementation, may be extended heavily
 
-- implement proper case type / product detail page showing details of registered JSON,
+- implement proper overview, showing real data (propagated from case via props)
+- implement proper case-type/product detail page showing details of registered JSON,
 - implement a case editor web component
 - implement some form of a new case button and use appropriate web component to create case
 - allow registering custom case actions, including the show-webcomponent-in-a-dialog feature
+- allow registering case-type/product-specific settings component 
 - allow processing REST or Kafka-based events, for example case creation notification
+- implement better validations during JSON upload, incl. webcomponent checks,
+- think about versioning and rollbacks of misbehaving JSONs
+- think about receiving and displaying notifiations
