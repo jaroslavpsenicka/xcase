@@ -10,6 +10,5 @@ module.exports = mongoose.model("Product", {
   createdBy: { type: String },
   createdAt: { type: Date },
   updatedBy: { type: String },
-  updatedAt: { type: Date },
-  description: { type: String },
+  updatedAt: { type: Date }
 });

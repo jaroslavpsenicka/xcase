@@ -1,5 +1,7 @@
 module.exports = {
   name: 'hypo', 
+  label: 'Hypoška',
+  description: '', 
   icon: '',
   overviewComponentUrl: '',
   actions: {

@@ -46,8 +46,8 @@ const ProductsPage = () => {
     <Col md={6} lg={4} xl={3}>
       <Col md={12} className="h-150px b-2-ddd p-2 pl-3 mb-4 bg-white text-dark">
         <div className="col-md-10 cursor-pointer" onClick={() => navigate('/products/' + product.name)}>
-          <h5 className="pt-2 text-primary">{product.name}</h5>
-          <div className="h-100px text-secondary">{product.description ? product.description : 'No description.'}</div>
+          <h5 className="pt-2 text-primary">{product.spec.label ? product.spec.label : product.name}</h5>
+          <div className="h-100px text-secondary">{product.spec.description ? product.spec.description : 'No description.'}</div>
         </div>
       </Col>
     </Col>

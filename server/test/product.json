@@ -1,5 +1,7 @@
 {
   "name": "xhypo", 
+  "label": "Hogofogo škvára",
+  "description": "Premium stuff, good one, nigga.", 
   "icon": "/xhypo.svg",
   "overviewComponentUrl": "/xhypo-overview.js",
   "actions": {

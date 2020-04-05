@@ -32,12 +32,13 @@ Product.deleteMany({}, (err) => {
 	Product.create({ _id: mortgage1, 
 		id: hash.encodeHex(mortgage1.toHexString()),  
 		name: 'ihypo', 
-		description: 'Customer mortgage as we love it.', 
 		revision: 1, 
 		starred: true, 
 		createdBy: 'Mary Doe',
 		spec: {
 			name: 'ihypo', 
+			label: 'Mortgage',
+			description: 'Customer mortgage as we love it.', 
 			icon: '/ihypo.svg',
 			overviewComponentUrl: '/ihypo-overview.js',
 			actions: {
@@ -181,7 +182,6 @@ module.exports = function (app) {
 	app.get('/api/cases', (req, res) => {
 		Case.find((err, cases) => {
 			if (err) throw err;
-			console.log(cases);
 			res.status(200).send(cases.map(c => c.toObject({ flattenMaps: true })));
 		});
 	});
