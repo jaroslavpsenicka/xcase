@@ -1,6 +1,6 @@
 # xCase
 
-This is a prototype project for generic case management system.
+This is a prototype project for generic case management system. For demo, [click here](https://xcase-test.herokuapp.com).
 
 ## What it does
 
