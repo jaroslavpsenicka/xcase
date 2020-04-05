@@ -51,7 +51,7 @@ class IHypoOverview extends HTMLElement {
 customElements.define('ihypo-overview', IHypoOverview)
 ```
 
-> correct, the overview is not neccesarily accurate for all the cases
+> Correct, the overview is not neccesarily accurate for all the cases.
 
 ## Summary and next steps
 
