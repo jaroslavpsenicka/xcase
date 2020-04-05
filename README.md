@@ -65,10 +65,10 @@ The existing code shows implementation of webcomponents-based case list using Re
 - implement proper case-type/product detail page showing details of registered JSON,
 - implement a case editor web component
 - implement some form of a new case button and use appropriate web component to create case
+- implement better validations during JSON upload, incl. webcomponent checks,
 - allow registering custom case actions, including the show-webcomponent-in-a-dialog feature
 - allow registering case-type/product-specific settings component 
 - allow processing REST or Kafka-based events, for example case creation notification
-- implement better validations during JSON upload, incl. webcomponent checks,
-- think about using [shadow DOM in webcomponents](https://www.grapecity.com/blogs/using-web-components-with-react-2019), [TM crash course](https://www.youtube.com/watch?v=PCWaFLy3VUo)
-- think about versioning and rollbacks of misbehaving JSONs
-- think about receiving and displaying notifiations
+- consider using [shadow DOM in webcomponents](https://www.grapecity.com/blogs/using-web-components-with-react-2019), [TM crash course](https://www.youtube.com/watch?v=PCWaFLy3VUo)
+- consider versioning and rollbacks of misbehaving JSONs
+- consider receiving and displaying notifiations
