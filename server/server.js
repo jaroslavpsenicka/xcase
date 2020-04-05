@@ -7,7 +7,6 @@ const methodOverride = require('method-override');
 const mask = require('mongoosemask');
 const path = require('path');
 const log4js = require('log4js');
-const AuthError = require('./errors').AuthError;
 
 const app = express();
 const logger = log4js.getLogger();

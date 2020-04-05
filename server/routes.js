@@ -9,7 +9,7 @@ const log4js = require('log4js');
 const multer = require('multer');
 const fs = require('fs');
 
-const { ProductDescriptorValidationError, AuthError } = require('./errors');
+const { ProductDescriptorValidationError } = require('./errors');
 
 const hash = new Hashids();
 const logger = log4js.getLogger('routes');
@@ -231,9 +231,7 @@ module.exports = function (app) {
 	});
 
 	app.use((err, req, res, next) => {
-		if (err instanceof AuthError) {
-			res.status(403).json({ error: err.message });
-		} else if (err.message) {
+		if (err.message) {
 			logger.error('root handler', err.message);
 			const errd = config.errors[err.message];
 			if (errd) {

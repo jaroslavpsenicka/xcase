@@ -4,10 +4,4 @@ class ProductDescriptorValidationError extends Error {
   }
 }
 
-class AuthError extends Error {  
-  constructor (message) {
-    super(message)
-  }
-}
-
-module.exports = { ProductDescriptorValidationError, AuthError }   
+module.exports = { ProductDescriptorValidationError }   
