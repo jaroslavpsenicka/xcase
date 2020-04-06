@@ -63,7 +63,7 @@ The existing code shows implementation of webcomponents-based case list using Re
 
 - [implement proper overview, showing real data](#1)
 - [implement proper case-type/product detail page showing details of registered JSON](#2)
-- implement a case editor web component
+- [implement a case editor web component](#3)
 - implement some form of a new case button and use appropriate web component to create case
 - implement better validations during JSON upload, incl. webcomponent checks,
 - allow registering custom case actions, including the show-webcomponent-in-a-dialog feature
