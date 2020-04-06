@@ -61,8 +61,8 @@ The 'loanamount' attribute is propagated into the webcomponent from the case dat
 
 The existing code shows implementation of webcomponents-based case list using React/Node. This is very basic implementation, may be extended heavily
 
-- implement proper overview, showing real data (propagated from case via props)
-- implement proper case-type/product detail page showing details of registered JSON,
+- [implement proper overview, showing real data](#1)
+- [implement proper case-type/product detail page showing details of registered JSON](#2)
 - implement a case editor web component
 - implement some form of a new case button and use appropriate web component to create case
 - implement better validations during JSON upload, incl. webcomponent checks,
