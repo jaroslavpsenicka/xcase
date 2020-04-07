@@ -15,12 +15,14 @@ const App = () => {
   const Contents = loadable(() => import(/* webpackChunkName: "components" */ './components/Contents'));  
   const Sidebar = loadable(() => import(/* webpackChunkName: "components" */ './components/Sidebar'));  
   const CasesPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/CasesPage'));  
+  const ProductDetailPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/ProductDetailPage'));  
   const ProductsPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/ProductsPage'));
   const NoPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/NoPage'));
 
   const routes = {
     "/cases": () => <CasesPage />,
-    "/products": () => <ProductsPage />
+    "/products": () => <ProductsPage />,
+    "/products/:name": ({name}) => <ProductDetailPage name={name} />
   };
 
   useRedirect('/', '/cases');
