@@ -64,7 +64,7 @@ The existing code shows implementation of webcomponents-based case list using Re
 - [implement proper overview, showing real data](https://github.com/jaroslavpsenicka/xcase/issues/1)
 - [implement proper case-type/product detail page showing details of registered JSON](https://github.com/jaroslavpsenicka/xcase/issues/2)
 - [implement a case editor web component](https://github.com/jaroslavpsenicka/xcase/issues/3)
-- implement some form of a new case button and use appropriate web component to create case
+- [implement some form of a new case button and use appropriate web component to create case](https://github.com/jaroslavpsenicka/xcase/issues/4)
 - implement better validations during JSON upload, incl. webcomponent checks,
 - allow registering custom case actions, including the show-webcomponent-in-a-dialog feature
 - allow registering case-type/product-specific settings component 

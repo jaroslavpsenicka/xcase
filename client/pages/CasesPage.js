@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Row from 'react-bootstrap/Row'
-import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons'
 import { ProductsContext } from '../ProductsContext';
 import { CasesContext } from '../CasesContext';
 
@@ -9,6 +8,7 @@ import Loading from '../components/Loading';
 import LoadingError from '../components/LoadingError';
 import Search from '../components/Search';
 import CaseOverview from '../components/CaseOverview';
+import CreateCaseDialog from '../components/CreateCaseDialog';
 
 import styled from 'styled-components';
 
@@ -23,6 +23,7 @@ const CasesPage = () => {
 
   const [ cases, setCases ] = useContext(CasesContext);
   const [ products ] = useContext(ProductsContext);
+  const [ showCreateCaseDialog, setShowCreateCaseDialog ] = useState(false);
 
   const toggleOverview = (thecase) => {
     setCases(prev => { 
@@ -64,7 +65,16 @@ const CasesPage = () => {
   
   return (
     <div className="p-4">
-      <h4 className="text-muted font-weight-light text-uppercase mb-4">Cases</h4>
+      <h4 className="text-muted font-weight-light text-uppercase mb-4">
+        <FontAwesomeIcon icon={faPlus} className="mr-2 float-right cursor-pointer text-success"
+          onClick={() => setShowCreateCaseDialog(true)}/>
+        Cases
+      </h4>
+      <CreateCaseDialog 
+        products={products ? products.data : undefined}
+        show={showCreateCaseDialog} 
+        onAdd={(product) => { console.log(product); setShowCreateCaseDialog(false) }} 
+        onCancel={() => setShowCreateCaseDialog(false)}/>      
       <Search/>
       {
         cases.loading ? <Loading /> : 
@@ -77,6 +87,3 @@ const CasesPage = () => {
 };
 
 export default CasesPage;
-
-
-

@@ -55,3 +55,7 @@ body {
 .ml-6 {
     margin-left: 3.5rem !important;
 }
+
+.hover:hover {
+    background:#eee;
+}
