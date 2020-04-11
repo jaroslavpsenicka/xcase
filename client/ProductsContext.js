@@ -11,15 +11,20 @@ const ProductsProvider = ({children}) => {
   const handleProducts = (response) => {
     setProducts({ loading: false, data: response.data });
     response.data
-      .filter(p => p.spec && p.spec.overviewComponentUrl)
-      .map(p => registerWebComponent(p.spec.overviewComponentUrl));
+      .filter(p => p.spec)
+      .map(p => {
+        registerWebComponent(p.spec.overviewComponentUrl);
+        registerWebComponent(p.spec.createComponentUrl)
+      });
   }
 
   const registerWebComponent = (url) => {
-    console.log('Registering web component ', url);
-    var script = document.createElement('script');
-    script.setAttribute('src', url);
-    document.body.appendChild(script);  
+    if (url) {
+      console.log('Registering web component ', url);
+      var script = document.createElement('script');
+      script.setAttribute('src', url);
+      document.body.appendChild(script);  
+    }
   }
 
   useEffect(() => {

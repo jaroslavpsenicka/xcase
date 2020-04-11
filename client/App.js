@@ -14,13 +14,16 @@ const App = () => {
   const Header = loadable(() => import(/* webpackChunkName: "components" */ './components/Header'));  
   const Contents = loadable(() => import(/* webpackChunkName: "components" */ './components/Contents'));  
   const Sidebar = loadable(() => import(/* webpackChunkName: "components" */ './components/Sidebar'));  
+  const CreateCasePage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/CreateCasePage'));  
   const CasesPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/CasesPage'));  
   const ProductDetailPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/ProductDetailPage'));  
   const ProductsPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/ProductsPage'));
   const NoPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/NoPage'));
 
   const routes = {
+    "/create-case/:productName": ({productName}) => <CreateCasePage productName={productName}/>,
     "/cases": () => <CasesPage />,
+    "/loading/:id": ({id}) => <CasesPage loading={id} />,
     "/products": () => <ProductsPage />,
     "/products/:name": ({name}) => <ProductDetailPage name={name} />
   };

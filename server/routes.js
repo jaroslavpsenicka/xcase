@@ -41,6 +41,7 @@ Product.deleteMany({}, (err) => {
 			description: 'Customer mortgage as we love it.', 
 			icon: '/ihypo.svg',
 			overviewComponentUrl: '/ihypo-overview.js',
+			createComponentUrl: '/ihypo-create.js',
 			actions: {
 				create: {},
 				update: {},

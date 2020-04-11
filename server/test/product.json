@@ -4,6 +4,7 @@
   "description": "Premium stuff, good one, nigga.", 
   "icon": "/xhypo.svg",
   "overviewComponentUrl": "/xhypo-overview.js",
+  "createComponentUrl": "/xhypo-create.js",
   "actions": {
     "create": {
       "name": "",

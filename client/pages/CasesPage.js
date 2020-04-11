@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faAngleDown, faAngleUp, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { ProductsContext } from '../ProductsContext';
 import { CasesContext } from '../CasesContext';
+import { navigate } from 'hookrouter';
 
 import Loading from '../components/Loading';
 import LoadingError from '../components/LoadingError';
@@ -18,8 +19,14 @@ const StyledProductImage = styled.img`
   height: 32px;
   margin: 5px auto;
 `
+const StyledLoadingImage = styled(FontAwesomeIcon)`
+  position: absolute;
+  width: 20px !important;
+  height: 20px;
+  margin: 12px 5px;
+`
 
-const CasesPage = () => {
+const CasesPage = ({ loading }) => {
 
   const [ cases, setCases ] = useContext(CasesContext);
   const [ products ] = useContext(ProductsContext);
@@ -33,6 +40,11 @@ const CasesPage = () => {
     });
   }
    
+  const createCase = (product) => {
+    setShowCreateCaseDialog(false);
+    navigate('/create-case/' + product.name);
+  }
+
   const NoCases = () => (
     <div className="mt-5 text-center text-secondary">No, there are no cases of this kind.</div>
   )
@@ -59,8 +71,20 @@ const CasesPage = () => {
     )
   }
 
+  const LoadingCaseRow = () => (
+    <div className="p-2 pl-3 mb-1 bg-white text-secondary">
+      <div className="mr-5">
+        <StyledLoadingImage icon={faSpinner} className="fa-pulse" />
+        <h5 className="text-ellipsis pr-3 ml-5 mb-0 text-secondary">The case is being created...</h5>
+        <div className="text-secondary ml-5">Please wait while the case detail is loading.</div>
+      </div>
+    </div>
+  )
+
   const Cases = ({ cases }) => {
-    return cases.map(c => <CaseRow theCase={c} key={c.id} />);
+    const caseRows = cases.map(c => <CaseRow theCase={c} key={c.id} />);
+    if (loading) caseRows.unshift(<LoadingCaseRow key="loading"/>)
+    return caseRows;
   }
   
   return (
@@ -73,7 +97,7 @@ const CasesPage = () => {
       <CreateCaseDialog 
         products={products ? products.data : undefined}
         show={showCreateCaseDialog} 
-        onAdd={(product) => { console.log(product); setShowCreateCaseDialog(false) }} 
+        onAdd={(product) => createCase(product)} 
         onCancel={() => setShowCreateCaseDialog(false)}/>      
       <Search/>
       {

@@ -30,7 +30,9 @@ const CreateCaseDialog = ({products, show, onAdd, onCancel}) => {
       </Modal.Header>
       <Modal.Body>
         <ul className="list-group">
-          { products.map(p => <Product product={p.spec} key={p.id} />) }
+          { products
+            .filter(p => p.spec.createComponentUrl)
+            .map(p => <Product product={p.spec} key={p.id} />) }
         </ul>
       </Modal.Body>
       <Modal.Footer>
