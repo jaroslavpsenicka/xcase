@@ -218,11 +218,32 @@ module.exports = function (app) {
 				revision: 1, 
 				starred: false,
 				createdAt: new Date(),
-				product: product._id,
+				product: product.name,
 				data: data
 			}, (err, caseObject) => {
 				if (err) throw err;
-				return res.status(201).json({ ...caseObject._doc, product: undefined });
+				return res.status(201).json({ ...caseObject._doc });
+			});	
+		});
+	});
+
+	app.get('/api/loading/:id', (req, res) => {
+		Case.count({}, function(err, count) {
+			if (err) throw err;
+			const caseId = new ObjectId();	
+			Case.create({ _id: caseId, 
+				id: hash.encodeHex(caseId.toHexString()),  
+				name: 'Case ' + (count+1), 
+				revision: 1, 
+				starred: false,
+				createdAt: new Date(),
+				product: 'ihypo', 
+				data: {
+					loanAmount: 2000000
+				}
+			}, (err, caseObject) => {
+				if (err) throw err;
+				return res.status(200).json({ ...caseObject._doc });
 			});	
 		});
 	});

@@ -7,6 +7,25 @@ const CasesContext = createContext([{}, () => {}]);
 const CasesProvider = ({children}) => {
 
   const [cases, setCases] = useState({ loading: true });
+  const [loading, setLoading] = useState();
+
+  const load = (caseId) => {
+    if (caseId) {
+      setLoading(caseId);
+      setTimeout(checkLoading, 2000, caseId);
+    }
+  }
+
+  const checkLoading = (caseId) => {
+    Axios.get(SERVICE_URL + '/api/loading/' + caseId)
+      .then(response => loaded(response.data))
+      .catch(err => setTimeout(checkLoading, 1000));
+  }
+
+  const loaded = (newCase) => {
+    setLoading(false);
+    setCases({ ...cases, data: [newCase, ...cases.data]})  
+  }
 
   useEffect(() => {
     setCases(prev => { return { ...prev, loading: true }});
@@ -16,7 +35,7 @@ const CasesProvider = ({children}) => {
   }, []);
 
   return (
-    <CasesContext.Provider value={[cases, setCases]}>{children}</CasesContext.Provider>
+    <CasesContext.Provider value={{cases, setCases, loading, load}}>{children}</CasesContext.Provider>
   );
 }
 

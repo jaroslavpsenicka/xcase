@@ -23,7 +23,6 @@ const App = () => {
   const routes = {
     "/create-case/:productName": ({productName}) => <CreateCasePage productName={productName}/>,
     "/cases": () => <CasesPage />,
-    "/loading/:id": ({id}) => <CasesPage loading={id} />,
     "/products": () => <ProductsPage />,
     "/products/:name": ({name}) => <ProductDetailPage name={name} />
   };

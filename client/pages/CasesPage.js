@@ -26,9 +26,9 @@ const StyledLoadingImage = styled(FontAwesomeIcon)`
   margin: 12px 5px;
 `
 
-const CasesPage = ({ loading }) => {
+const CasesPage = () => {
 
-  const [ cases, setCases ] = useContext(CasesContext);
+  const { cases, setCases, loading } = useContext(CasesContext);
   const [ products ] = useContext(ProductsContext);
   const [ showCreateCaseDialog, setShowCreateCaseDialog ] = useState(false);
 
