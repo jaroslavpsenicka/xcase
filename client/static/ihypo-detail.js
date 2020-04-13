@@ -1,4 +1,4 @@
-class IHypoCreate extends HTMLElement {
+class IHypoDetail extends HTMLElement {
 
   connectedCallback () {
 
@@ -15,7 +15,7 @@ class IHypoCreate extends HTMLElement {
         <div class="form-group col-md-4">
           <label for="propertyPrice">Property price</label>
           <div class="input-group">
-            <input id="propertyPrice" type="number" class="form-control" placeholder="2500000" value="2500000" aria-label="2500000" aria-describedby="basic-addon2">
+            <input id="propertyPrice" type="number" class="form-control" placeholder="2500000" value="2500000" aria-label="2500000" aria-describedby="basic-addon2" disabled>
             <div class="input-group-append">
               <span class="input-group-text" id="basic-addon2">CZK</span>
             </div>
@@ -24,7 +24,7 @@ class IHypoCreate extends HTMLElement {
         <div class="form-group col-md-4">
           <label for="savedAmount">Saved amount</label>
           <div class="input-group">
-            <input id="savedAmount" type="number" class="form-control" placeholder="500000" value="500000" aria-label="500000" aria-describedby="basic-addon3">
+            <input id="savedAmount" type="number" class="form-control" placeholder="500000" value="500000" aria-label="500000" aria-describedby="basic-addon3" disabled>
             <div class="input-group-append">
               <span class="input-group-text" id="basic-addon3">CZK</span>
             </div>
@@ -33,7 +33,7 @@ class IHypoCreate extends HTMLElement {
         <div class="form-group col-md-4">
           <label for="inputAddress">Maturity</label>
           <div class="input-group">
-            <select class="custom-select" id="inputGroupSelect02">
+            <select class="custom-select" id="inputGroupSelect02" disabled>
               <option value="5">5</option>
               <option value="6">6</option>
               <option value="7">7</option>
@@ -72,7 +72,7 @@ class IHypoCreate extends HTMLElement {
         <div class="form-group col-md-6">
           <label for="name">Name</label>
           <div class="input-group">
-            <input id="name" type="text" class="form-control" placeholder="František Novák" value="František Novák">
+            <input id="name" type="text" class="form-control" placeholder="František Novák" value="František Novák" disabled>
           </div>
         </div>
         <div class="form-group col-md-6">
@@ -81,7 +81,7 @@ class IHypoCreate extends HTMLElement {
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon6">@</span>
             </div>
-            <input id="email" type="email" class="form-control" placeholder="franta@gmail.com" value="franta@gmail.com">
+            <input id="email" type="email" class="form-control" placeholder="franta@gmail.com" value="franta@gmail.com" disabled>
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@ class IHypoCreate extends HTMLElement {
         <div class="form-group col-md-4">
           <label for="monthlyIncome">Monthly income</label>
           <div class="input-group">
-            <input id="monthlyIncome" type="number" class="form-control" placeholder="50000" value="50000" aria-label="5000" aria-describedby="basic-addon5">
+            <input id="monthlyIncome" type="number" class="form-control" placeholder="50000" value="50000" aria-label="5000" aria-describedby="basic-addon5" disabled>
             <div class="input-group-append">
               <span class="input-group-text" id="basic-addon5">CZK</span>
             </div>
@@ -98,7 +98,7 @@ class IHypoCreate extends HTMLElement {
         <div class="form-group col-md-4">
           <label for="monthlyExpenses">Monthly expenses</label>
           <div class="input-group">
-            <input id="monthlyExpenses" type="number" class="form-control" placeholder="10000" value="10000" aria-label="10000" aria-describedby="basic-addon6">
+            <input id="monthlyExpenses" type="number" class="form-control" placeholder="10000" value="10000" aria-label="10000" aria-describedby="basic-addon6" disabled>
             <div class="input-group-append">
               <span class="input-group-text" id="basic-addon6">CZK</span>
             </div>
@@ -107,7 +107,7 @@ class IHypoCreate extends HTMLElement {
         <div class="form-group col-md-4">
           <label for="savedAmount">Age</label>
           <div class="input-group">
-            <input id="savedAmount" type="number" class="form-control" placeholder="30" value="30" aria-label="30" aria-describedby="basic-addon4">
+            <input id="savedAmount" type="number" class="form-control" placeholder="30" value="30" aria-label="30" aria-describedby="basic-addon4" disabled>
             <div class="input-group-append">
               <span class="input-group-text" id="basic-addon4">years</span>
             </div>
@@ -115,17 +115,17 @@ class IHypoCreate extends HTMLElement {
         </div>
       </div>
       <div class="mt-4">
-        <button id="submitButton" type="submit" class="btn btn-primary float-right">Begin Approval</button>
+        <button id="submitButton" type="submit" class="btn btn-primary float-right">Update mortgage</button>
       </div>
     </form>`;
     
   const submitButton = document.getElementById('submitButton');
     submitButton.onclick = (event) => {
       event.preventDefault();
-      this.dispatchEvent(new CustomEvent("submit", { detail: '4ca613f3-3f54-419e-b5e6-9dfab9796980' }));
+      this.dispatchEvent(new CustomEvent("submit"));
     } 
   }
 }
 
 //register the new custom element
-customElements.define('ihypo-create', IHypoCreate)
+customElements.define('ihypo-detail', IHypoDetail)

@@ -6,10 +6,10 @@ import { CasesContext } from '../CasesContext';
 
 const CaseCreate = ({product}) => {
 
-  const { load } = useContext(CasesContext);
+  const { create } = useContext(CasesContext);
 
   const setAndNavigate = (caseId) => {
-    load(caseId);
+    create(caseId);
     navigate('/cases');
   }
 

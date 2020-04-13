@@ -26,6 +26,8 @@ const productSchema = require('./model/product.schema.json');
 ajv.addSchema(commonSchema, 'common');
 ajv.addSchema(productSchema, 'product');
 
+const CREATE_UUID = '4ca613f3-3f54-419e-b5e6-9dfab9796980';
+
 const mortgage1 = new ObjectId('000000000001');	
 Product.deleteMany({}, (err) => {	
 	if (err) throw err;
@@ -42,6 +44,7 @@ Product.deleteMany({}, (err) => {
 			icon: '/ihypo.svg',
 			overviewComponentUrl: '/ihypo-overview.js',
 			createComponentUrl: '/ihypo-create.js',
+			detailComponentUrl: '/ihypo-detail.js',
 			actions: {
 				create: {},
 				update: {},
@@ -59,6 +62,7 @@ Case.deleteMany({}, (err) => {
 		id: hash.encodeHex(case1.toHexString()),  
 		product: 'ihypo', 
 		name: 'Jan Novák, byt u Muzea', 
+		createdAt: new Date(2000),
 		status: 'SENT',
 		data: {
 			loanAmount: 2100000
@@ -68,6 +72,7 @@ Case.deleteMany({}, (err) => {
 		id: hash.encodeHex(case2.toHexString()),  
 		product: 'xhypo', 
 		name: 'Mary Vomaczkowa, hacienda grande', 
+		createdAt: new Date(1000),
 		status: 'SENT'
 	});	
 });
@@ -181,10 +186,12 @@ module.exports = function (app) {
 	 * @returns {Error} 500 - system error
 	 */
 	app.get('/api/cases', (req, res) => {
-		Case.find((err, cases) => {
-			if (err) throw err;
-			res.status(200).send(cases.map(c => c.toObject({ flattenMaps: true })));
-		});
+		Case.find({})
+			.sort([['updatedAt', -1], ['createdAt', -1]])
+			.exec((err, cases) => {
+				if (err) throw err;
+				res.status(200).send(cases.map(c => c.toObject({ flattenMaps: true })));
+			});
 	});
 
 		/**
@@ -227,24 +234,34 @@ module.exports = function (app) {
 		});
 	});
 
-	app.get('/api/loading/:id', (req, res) => {
-		Case.count({}, function(err, count) {
+	app.get('/api/creating/:id', (req, res) => {
+		const caseId = new ObjectId();	
+		Case.create({ 
+			_id: caseId, 
+			id: hash.encodeHex(caseId.toHexString()),  
+			name: 'František Novák, dům u lesa', 
+			revision: 1, 
+			starred: false,
+			createdAt: new Date(),
+			product: 'ihypo', 
+			data: {
+				loanAmount: 2000000
+			}
+		}, (err, caseObject) => {
 			if (err) throw err;
-			const caseId = new ObjectId();	
-			Case.create({ _id: caseId, 
-				id: hash.encodeHex(caseId.toHexString()),  
-				name: 'Case ' + (count+1), 
-				revision: 1, 
-				starred: false,
-				createdAt: new Date(),
-				product: 'ihypo', 
-				data: {
-					loanAmount: 2000000
-				}
-			}, (err, caseObject) => {
+			return res.status(200).json({ ...caseObject._doc });
+		});	
+	});
+
+	app.get('/api/updating/:id', (req, res) => {
+		Case.findOne({ id: req.params.id }, (err, caseObject) => {
+			if (err) throw err;
+			caseObject.name = 'František Novák, dům u paseky';
+			caseObject.updatedAt = new Date();
+			caseObject.save((err, caseObject) => {
 				if (err) throw err;
 				return res.status(200).json({ ...caseObject._doc });
-			});	
+			});
 		});
 	});
 

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import CaseCreate from '../components/CaseCreate'
 import { ProductsContext } from '../ProductsContext';
 
-const CreateCasePage = ({ productName }) => {
+const CaseCreatePage = ({ productName }) => {
 
   const [ products ] = useContext(ProductsContext);
 
@@ -16,4 +16,4 @@ const CreateCasePage = ({ productName }) => {
   );
 };
 
-export default CreateCasePage;
+export default CaseCreatePage;

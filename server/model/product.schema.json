@@ -1,7 +1,7 @@
 {
   "$id": "http://datacase.org/schemas/schema.json",
   "type": "object",
-  "required": ["name", "label", "icon", "description", "overviewComponentUrl", "createComponentUrl", "actions"],
+  "required": ["name", "label", "icon", "description", "overviewComponentUrl", "createComponentUrl", "detailComponentUrl", "actions"],
   "additionalProperties": false,
   "properties": {
     "name": {
@@ -20,6 +20,9 @@
       "type": "string"
     },
     "createComponentUrl": {
+      "type": "string"
+    },
+    "detailComponentUrl": {
       "type": "string"
     },
     "actions": {

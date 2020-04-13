@@ -14,15 +14,17 @@ const App = () => {
   const Header = loadable(() => import(/* webpackChunkName: "components" */ './components/Header'));  
   const Contents = loadable(() => import(/* webpackChunkName: "components" */ './components/Contents'));  
   const Sidebar = loadable(() => import(/* webpackChunkName: "components" */ './components/Sidebar'));  
-  const CreateCasePage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/CreateCasePage'));  
+  const CaseCreatePage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/CaseCreatePage'));  
+  const CaseDetailPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/CaseDetailPage'));  
   const CasesPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/CasesPage'));  
   const ProductDetailPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/ProductDetailPage'));  
   const ProductsPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/ProductsPage'));
   const NoPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/NoPage'));
 
   const routes = {
-    "/create-case/:productName": ({productName}) => <CreateCasePage productName={productName}/>,
+    "/create-case/:productName": ({productName}) => <CaseCreatePage productName={productName}/>,
     "/cases": () => <CasesPage />,
+    "/cases/:id": ({id}) => <CaseDetailPage caseId={id} />,
     "/products": () => <ProductsPage />,
     "/products/:name": ({name}) => <ProductDetailPage name={name} />
   };

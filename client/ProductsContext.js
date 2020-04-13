@@ -15,6 +15,7 @@ const ProductsProvider = ({children}) => {
       .map(p => {
         registerWebComponent(p.spec.overviewComponentUrl);
         registerWebComponent(p.spec.createComponentUrl)
+        registerWebComponent(p.spec.detailComponentUrl)
       });
   }
 

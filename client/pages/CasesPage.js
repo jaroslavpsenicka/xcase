@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faAngleDown, faAngleUp, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { ProductsContext } from '../ProductsContext';
 import { CasesContext } from '../CasesContext';
-import { navigate } from 'hookrouter';
+import { navigate, A} from 'hookrouter';
 
 import Loading from '../components/Loading';
 import LoadingError from '../components/LoadingError';
@@ -28,7 +28,7 @@ const StyledLoadingImage = styled(FontAwesomeIcon)`
 
 const CasesPage = () => {
 
-  const { cases, setCases, loading } = useContext(CasesContext);
+  const { cases, setCases, creating, updating } = useContext(CasesContext);
   const [ products ] = useContext(ProductsContext);
   const [ showCreateCaseDialog, setShowCreateCaseDialog ] = useState(false);
 
@@ -57,13 +57,16 @@ const CasesPage = () => {
 
   const CaseRow = ({theCase}) => {
     const product = products.data && products.data.find(p => p.name === theCase.product);
-    const labelClass = `text-ellipsis pr-3 ml-5 mb-0 ${product ? 'text-primary' : 'text-secondary'}`
+    const labelClass = `text-ellipsis pr-3 ml-5 mb-0 ${product ? 'text-primary' : 'text-secondary'}`;
+    const caseDetailHref = `/cases/${theCase.id}`;
     return (
       <div className="p-2 pl-3 mb-1 bg-white text-secondary">
         { product ? <CaseStateAndActions theCase={theCase} /> : null }
         <div className="mr-5">
           <StyledProductImage src={ product ? product.spec.icon : '/none.svg'} />
-          <h5 className={labelClass}>{theCase.name}</h5>
+          <h5 className={labelClass}>
+            { product ? <A href={caseDetailHref}>{theCase.name}</A> : theCase.name }
+          </h5>
           <div className="text-secondary ml-5">{theCase.description ? theCase.description : 'No description.'}</div>
         </div>
         <CaseOverview theCase={theCase} className="mt-2"/>
@@ -71,7 +74,7 @@ const CasesPage = () => {
     )
   }
 
-  const LoadingCaseRow = () => (
+  const CreatingCaseRow = () => (
     <div className="p-2 pl-3 mb-1 bg-white text-secondary">
       <div className="mr-5">
         <StyledLoadingImage icon={faSpinner} className="fa-pulse" />
@@ -81,9 +84,19 @@ const CasesPage = () => {
     </div>
   )
 
+  const UpdatingCaseRow = () => (
+    <div className="p-2 pl-3 mb-1 bg-white text-secondary">
+      <div className="mr-5">
+        <StyledLoadingImage icon={faSpinner} className="fa-pulse" />
+        <h5 className="text-ellipsis pr-3 ml-5 mb-0 text-secondary">The case is being updated...</h5>
+        <div className="text-secondary ml-5">Please wait while the case detail is loading.</div>
+      </div>
+    </div>
+  )
+
   const Cases = ({ cases }) => {
-    const caseRows = cases.map(c => <CaseRow theCase={c} key={c.id} />);
-    if (loading) caseRows.unshift(<LoadingCaseRow key="loading"/>)
+    const caseRows = cases.map(c => updating === c.id ? <UpdatingCaseRow key={c.id} /> : <CaseRow theCase={c} key={c.id} />);
+    if (creating) caseRows.unshift(<CreatingCaseRow key="0"/>)
     return caseRows;
   }
   

@@ -5,6 +5,7 @@
   "icon": "/xhypo.svg",
   "overviewComponentUrl": "/xhypo-overview.js",
   "createComponentUrl": "/xhypo-create.js",
+  "detailComponentUrl": "/xhypo-detail.js",
   "actions": {
     "create": {
       "name": "",

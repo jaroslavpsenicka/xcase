@@ -7,24 +7,45 @@ const CasesContext = createContext([{}, () => {}]);
 const CasesProvider = ({children}) => {
 
   const [cases, setCases] = useState({ loading: true });
-  const [loading, setLoading] = useState();
+  const [creating, setCreating] = useState();
+  const [updating, setUpdating] = useState();
 
-  const load = (caseId) => {
+  const create = (caseId) => {
     if (caseId) {
-      setLoading(caseId);
-      setTimeout(checkLoading, 2000, caseId);
+      setCreating(caseId);
+      setTimeout(checkCreating, 2000, caseId);
     }
   }
 
-  const checkLoading = (caseId) => {
-    Axios.get(SERVICE_URL + '/api/loading/' + caseId)
-      .then(response => loaded(response.data))
+  const update = (caseId) => {
+    if (caseId) {
+      setUpdating(caseId);
+      setTimeout(checkUpdating, 2000, caseId);
+    }
+  }
+
+  const checkCreating = (caseId) => {
+    Axios.get(SERVICE_URL + '/api/creating/' + caseId)
+      .then(response => created(response.data))
       .catch(err => setTimeout(checkLoading, 1000));
   }
 
-  const loaded = (newCase) => {
-    setLoading(false);
+  const checkUpdating = (caseId) => {
+    Axios.get(SERVICE_URL + '/api/updating/' + caseId)
+      .then(response => updated(response.data))
+      .catch(err => setTimeout(checkLoading, 1000));
+  }
+
+  const created = (newCase) => {
+    setCreating(false);
     setCases({ ...cases, data: [newCase, ...cases.data]})  
+  }
+
+  const updated = (updatedCase) => {
+    setUpdating(false);
+    setCases({ ...cases, data: cases.data.map(c => {
+      return c.id === updatedCase.id ? updatedCase : c;
+    })})  
   }
 
   useEffect(() => {
@@ -35,7 +56,7 @@ const CasesProvider = ({children}) => {
   }, []);
 
   return (
-    <CasesContext.Provider value={{cases, setCases, loading, load}}>{children}</CasesContext.Provider>
+    <CasesContext.Provider value={{cases, setCases, creating, create, updating, update}}>{children}</CasesContext.Provider>
   );
 }
 
