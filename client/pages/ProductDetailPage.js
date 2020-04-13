@@ -22,8 +22,14 @@ const ProductDetailPage = ({ name }) => {
         <div className="col-md-9">{product.spec.description}</div>
         <div className="col-md-3 text-secondary">Icon URL</div>
         <div className="col-md-9">{product.spec.icon}</div>
+
+        <h5 className="col-md-12 mt-3 mb-2">Components</h5>
         <div className="col-md-3 text-secondary">Overview URL</div>
-        <div className="col-md-9">{product.spec.overviewComponentUrl}</div>
+        <div className="col-md-9"><a href={product.spec.overviewComponentUrl} target="_new">{product.spec.overviewComponentUrl}</a></div>
+        <div className="col-md-3 text-secondary">Create URL</div>
+        <div className="col-md-9"><a href={product.spec.createComponentUrl} target="_new">{product.spec.createComponentUrl}</a></div>
+        <div className="col-md-3 text-secondary">Detail URL</div>
+        <div className="col-md-9"><a href={product.spec.detailComponentUrl} target="_new">{product.spec.detailComponentUrl}</a></div>
       </div>
     </>
   }

@@ -57,22 +57,35 @@ const CasesPage = () => {
 
   const CaseRow = ({theCase}) => {
     const product = products.data && products.data.find(p => p.name === theCase.product);
-    const labelClass = `text-ellipsis pr-3 ml-5 mb-0 ${product ? 'text-primary' : 'text-secondary'}`;
-    const caseDetailHref = `/cases/${theCase.id}`;
-    return (
-      <div className="p-2 pl-3 mb-1 bg-white text-secondary">
-        { product ? <CaseStateAndActions theCase={theCase} /> : null }
-        <div className="mr-5">
-          <StyledProductImage src={ product ? product.spec.icon : '/none.svg'} />
-          <h5 className={labelClass}>
-            { product ? <A href={caseDetailHref}>{theCase.name}</A> : theCase.name }
-          </h5>
-          <div className="text-secondary ml-5">{theCase.description ? theCase.description : 'No description.'}</div>
-        </div>
-        <CaseOverview theCase={theCase} className="mt-2"/>
-      </div>
-    )
+    return product ? <CaseRowKnownProduct product={product} theCase={theCase} /> : <CaseRowUnknownProduct theCase={theCase} />;
   }
+
+  const CaseRowKnownProduct = ({product, theCase}) => (
+    <div className="p-2 pl-3 mb-1 bg-white text-secondary">
+      <CaseStateAndActions theCase={theCase} />
+      <div className="mr-5">
+        <A href={`/products/${product.name}`}>
+          <StyledProductImage src={product.spec.icon} />
+        </A>
+        <h5 className="text-ellipsis pr-3 ml-5 mb-0 text-primary">
+          <A href={`/cases/${theCase.id}`}>{theCase.name}</A>
+        </h5>
+        <div className="text-secondary ml-5">{theCase.description ? theCase.description : 'No description.'}</div>
+      </div>
+      <CaseOverview theCase={theCase} className="mt-2"/>
+    </div>
+  )
+
+  const CaseRowUnknownProduct = ({theCase}) => (
+    <div className="p-2 pl-3 mb-1 bg-white text-secondary">
+      <div className="mr-5">
+        <StyledProductImage src="/none.svg" />
+        <h5 className="text-ellipsis pr-3 ml-5 mb-0 text-secondary">{theCase.name}</h5>
+        <div className="text-secondary ml-5">{theCase.description ? theCase.description : 'No description.'}</div>
+      </div>
+      <CaseOverview theCase={theCase} className="mt-2"/>
+    </div>
+  )
 
   const CreatingCaseRow = () => (
     <div className="p-2 pl-3 mb-1 bg-white text-secondary">
