@@ -27,13 +27,13 @@ const CasesProvider = ({children}) => {
   const checkCreating = (caseId) => {
     Axios.get(SERVICE_URL + '/api/creating/' + caseId)
       .then(response => created(response.data))
-      .catch(err => setTimeout(checkLoading, 1000));
+      .catch(err => setTimeout(checkCreating, 1000));
   }
 
   const checkUpdating = (caseId) => {
     Axios.get(SERVICE_URL + '/api/updating/' + caseId)
       .then(response => updated(response.data))
-      .catch(err => setTimeout(checkLoading, 1000));
+      .catch(err => setTimeout(checkUpdating, 1000));
   }
 
   const created = (newCase) => {
