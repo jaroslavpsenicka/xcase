@@ -20,6 +20,8 @@ const ProductsPage = () => {
   const onUpload = (event) => {
     if (event.target.name === "file") {
       const formData = new FormData();
+      const baseUrl = window.location.protocol + '//' + window.location.hostname + (location.port ? ':' + location.port : '');
+      formData.append('baseUrl', baseUrl)
       formData.append('file', event.target.files[0], event.target.files[0].name);
       axios.post(SERVICE_URL + '/api/products', formData)
         .then(resp => handleUpload(resp))

@@ -3,6 +3,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const Product = require('./model/product');
 const Case = require('./model/case');
 const Ajv = require('ajv');
+const Axios = require('axios');
 const swagger = require('express-swagger-generator');
 const config = require('./config');
 const log4js = require('log4js');
@@ -77,14 +78,26 @@ Case.deleteMany({}, (err) => {
 	});	
 });
 
-const parseAndValidate = (payload) => {
-	const json = JSON.parse(payload);
+const validate = (json, baseUrl) => {
+
+	// validate against JSON schema
+
 	if (!ajv.validate('product', json)) {
 		const path = ajv.errors[0].dataPath ? ajv.errors[0].dataPath.substring(1) + ": " : "";
 		throw new ProductDescriptorValidationError(path + ajv.errors[0].message);
 	}
 
-	return json;
+	// validate component URLs
+
+	return Promise.all([
+		requestGet(json.overviewComponentUrl, baseUrl), 
+		requestGet(json.createComponentUrl, baseUrl), 
+		requestGet(json.detailComponentUrl, baseUrl)
+	])
+}
+
+const requestGet = (url, baseUrl) => {
+	return Axios.get(url.startsWith('http') ? url : (baseUrl + url));
 }
 
 /** 
@@ -107,23 +120,31 @@ module.exports = function (app) {
 	 */
 	app.post('/api/products', upload.single("file"), (req, res) => {
 		try {
-			const nid = new ObjectId();
-			const payload = parseAndValidate(fs.readFileSync(req.file.path).toString());
-			Product.create({
-				_id: nid,
+			const payload = JSON.parse(fs.readFileSync(req.file.path).toString());
+			validate(payload, req.body.baseUrl).then(() => {
+				const nid = new ObjectId();
+				Product.create({
+					_id: nid,
+					id: hash.encodeHex(nid.toHexString()), 			
 				id: hash.encodeHex(nid.toHexString()), 			
-				name: payload.name,
-				revision: 1,
-				createdAt: new Date(),
-				spec: payload
-			}, (err, model) => {
-				if (err) throw err;
-				res.status(201).send(model);
+					id: hash.encodeHex(nid.toHexString()), 			
+					name: payload.name,
+					revision: 1,
+					createdAt: new Date(),
+					spec: payload
+				}, (err, model) => {
+					if (err) throw err;
+					res.status(201).send(model);
+				});
+			}).catch(err => {
+				return res.status(400).json({
+					error: err.config.url ? err.message + ', ' + err.config.url : err.message
+				});
 			});
 		} catch (err) {
 			if (err instanceof ProductDescriptorValidationError) {
-				res.status(400).json({error: err.message});
-			} else res.status(500).json({error: err.message});
+				return res.status(400).json({error: err.message});
+			} else return res.status(500).json({error: err.message});
 		}
 	});
 

@@ -65,7 +65,7 @@ The existing code shows implementation of webcomponents-based case list using Re
 - [implement proper case-type/product detail page showing details of registered JSON](https://github.com/jaroslavpsenicka/xcase/issues/2) - completed, shows basic data as well as components, with links to source
 - [implement a case editor web component](https://github.com/jaroslavpsenicka/xcase/issues/3) - implemented for ihypo product, includes "hardcoded update" for particular demo scenario only 
 - [implement some form of a new case button and use appropriate web component to create case](https://github.com/jaroslavpsenicka/xcase/issues/4) - implemented for ihypo product, includes "hardcoded create" for particular demo scenario only 
-- [implement better validations during JSON upload](https://github.com/jaroslavpsenicka/xcase/issues/5), incl. webcomponent checks
+- [implement better validations during JSON upload](https://github.com/jaroslavpsenicka/xcase/issues/5), incl. webcomponent checks - completed,
 - [implement some components](https://github.com/jaroslavpsenicka/xcase/issues/6) using [Angular](https://medium.com/@IMM9O/web-components-with-angular-d0205c9db08f)/[React](https://dev.to/frustigor/the-fastest-way-to-create-web-components-with-react-403)/[Vue](https://dev.to/aumayeung/create-web-components-with-vue-js-2bb0)
 - [allow registering custom case actions](https://github.com/jaroslavpsenicka/xcase/issues/6), including the show-webcomponent-in-a-dialog feature
 - [allow registering case-type/product-specific settings component](https://github.com/jaroslavpsenicka/xcase/issues/7)
