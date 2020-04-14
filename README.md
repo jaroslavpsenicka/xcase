@@ -61,13 +61,17 @@ The 'loanamount' attribute is propagated into the webcomponent from the case dat
 
 The existing code shows implementation of webcomponents-based case list using React/Node. This is very basic implementation, may be extended heavily
 
-- [implement proper overview, showing real data](https://github.com/jaroslavpsenicka/xcase/issues/1)
-- [implement proper case-type/product detail page showing details of registered JSON](https://github.com/jaroslavpsenicka/xcase/issues/2)
-- [implement a case editor web component](https://github.com/jaroslavpsenicka/xcase/issues/3)
-- [implement some form of a new case button and use appropriate web component to create case](https://github.com/jaroslavpsenicka/xcase/issues/4)
-- implement better validations during JSON upload, incl. webcomponent checks,
-- allow registering custom case actions, including the show-webcomponent-in-a-dialog feature
-- allow registering case-type/product-specific settings component 
+- [implement proper overview, showing real data](https://github.com/jaroslavpsenicka/xcase/issues/1) - completed, sample overview implemented for both ihypo and xhypo products
+- [implement proper case-type/product detail page showing details of registered JSON](https://github.com/jaroslavpsenicka/xcase/issues/2) - completed, shows basic data as well as components, with links to source
+- [implement a case editor web component](https://github.com/jaroslavpsenicka/xcase/issues/3) - implemented for ihypo product, includes "hardcoded update" for particular demo scenario only 
+- [implement some form of a new case button and use appropriate web component to create case](https://github.com/jaroslavpsenicka/xcase/issues/4) - implemented for ihypo product, includes "hardcoded create" for particular demo scenario only 
+- [implement better validations during JSON upload](https://github.com/jaroslavpsenicka/xcase/issues/5), incl. webcomponent checks
+- [implement some components](https://github.com/jaroslavpsenicka/xcase/issues/6) using [Angular](https://medium.com/@IMM9O/web-components-with-angular-d0205c9db08f)/[React](https://dev.to/frustigor/the-fastest-way-to-create-web-components-with-react-403)/[Vue](https://dev.to/aumayeung/create-web-components-with-vue-js-2bb0)
+- [allow registering custom case actions](https://github.com/jaroslavpsenicka/xcase/issues/6), including the show-webcomponent-in-a-dialog feature
+- [allow registering case-type/product-specific settings component](https://github.com/jaroslavpsenicka/xcase/issues/7)
+
+lower priority tasks:
+
 - allow processing REST or Kafka-based events, for example case creation notification
 - consider using [shadow DOM in webcomponents](https://www.grapecity.com/blogs/using-web-components-with-react-2019), [TM crash course](https://www.youtube.com/watch?v=PCWaFLy3VUo)
 - consider versioning and rollbacks of misbehaving JSONs
