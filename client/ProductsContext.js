@@ -10,14 +10,21 @@ const ProductsProvider = ({children}) => {
 
   const handleProducts = (data) => {
     setProducts({ loading: false, data: data });
-    data.filter(p => p.spec).map(p => {
-      registerWebComponent(p.spec.overviewComponentUrl);
-      registerWebComponent(p.spec.createComponentUrl)
-      registerWebComponent(p.spec.detailComponentUrl)
-    });
+    data.filter(p => p.spec).map(p => registerComponents(p));
   }
 
-  const registerWebComponent = (url) => {
+  const registerProduct = (p) => {
+    registerComponents(p);
+    setProducts({ ...products, data: [...products.data, p]});
+  }
+
+  const registerComponents = (p) => {
+    registerComponent(p.spec.overviewComponentUrl);
+    registerComponent(p.spec.createComponentUrl)
+    registerComponent(p.spec.detailComponentUrl)
+  }
+
+  const registerComponent = (url) => {
     if (url) {
       console.log('Registering web component ', url);
       var script = document.createElement('script');
@@ -34,7 +41,7 @@ const ProductsProvider = ({children}) => {
   }, []);
   
   return (
-    <ProductsContext.Provider value={[products, setProducts, handleProducts]}>{children}</ProductsContext.Provider>
+    <ProductsContext.Provider value={[products, setProducts, registerProduct]}>{children}</ProductsContext.Provider>
   );
 }
 
