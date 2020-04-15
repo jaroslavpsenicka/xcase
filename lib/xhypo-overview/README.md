@@ -1,3 +1,3 @@
-# Angular overview
+# Angular overview component
 
 Sample webcomponent implemented in Angular.

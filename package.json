@@ -7,7 +7,8 @@
     "server": "nodemon server/server.js",
     "client": "cross-env NODE_ENV=development REACT_APP_VERSION=$npm_package_version REACT_APP_SERVICE_URL=http://localhost:8080 webpack-dev-server --hot --history-api-fallback",
     "build": "cross-env NODE_ENV=production REACT_APP_VERSION=$npm_package_version webpack",
-    "build:xhypo": "cd products/xhypo/xhypo-overview && npm run build:elements && cp elements/xhypo-overview.js ../../../client/static",
+    "build:xhypo-overview": "cd lib/xhypo-overview && npm run build:elements && cp elements/xhypo-overview.js ../../client/static",
+    "build:xhypo-create": "cd lib/xhypo-create && yarn build && cp dist/xhypo-create.js ../../client/static",
     "test": "cd server && mocha",
     "start": "node server/server.js"
   },
