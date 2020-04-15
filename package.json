@@ -9,6 +9,7 @@
     "build": "cross-env NODE_ENV=production REACT_APP_VERSION=$npm_package_version webpack",
     "build:xhypo-overview": "cd lib/xhypo-overview && npm run build:elements && cp elements/xhypo-overview.js ../../client/static",
     "build:xhypo-create": "cd lib/xhypo-create && yarn build && cp dist/xhypo-create.js ../../client/static",
+    "build:xhypo-detail": "cd lib/xhypo-detail && yarn wc-build && cp dist/xhypo-detail.js ../../client/static",
     "test": "cd server && mocha",
     "start": "node server/server.js"
   },

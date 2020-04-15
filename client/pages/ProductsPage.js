@@ -14,7 +14,7 @@ const SERVICE_URL = process.env.REACT_APP_SERVICE_URL || '';
 
 const ProductsPage = () => {
 
-  const [ products, setProducts, registerWebComponent ] = useContext(ProductsContext);
+  const [ products, setProducts, handleProducts ] = useContext(ProductsContext);
   const inputFile = useRef(null); 
 
   const onUpload = (event) => {
@@ -24,16 +24,9 @@ const ProductsPage = () => {
       formData.append('baseUrl', baseUrl)
       formData.append('file', event.target.files[0], event.target.files[0].name);
       axios.post(SERVICE_URL + '/api/products', formData)
-        .then(resp => handleUpload(resp))
+        .then(resp => handleProducts([...products.data, resp.data]))
         .catch(err => console.log(err));
       }
-  }
-
-  const handleUpload = (resp) => {
-    setProducts({ ...products, data: [...products.data, resp.data] });
-    if (resp.data.spec && resp.data.spec.overviewComponentUrl) {
-      registerWebComponent(resp.data.spec.overviewComponentUrl);
-    }
   }
 
   const Products = ({ products }) => {

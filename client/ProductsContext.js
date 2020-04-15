@@ -8,15 +8,13 @@ const ProductsProvider = ({children}) => {
 
   const [products, setProducts] = useState({ loading: true });
 
-  const handleProducts = (response) => {
-    setProducts({ loading: false, data: response.data });
-    response.data
-      .filter(p => p.spec)
-      .map(p => {
-        registerWebComponent(p.spec.overviewComponentUrl);
-        registerWebComponent(p.spec.createComponentUrl)
-        registerWebComponent(p.spec.detailComponentUrl)
-      });
+  const handleProducts = (data) => {
+    setProducts({ loading: false, data: data });
+    data.filter(p => p.spec).map(p => {
+      registerWebComponent(p.spec.overviewComponentUrl);
+      registerWebComponent(p.spec.createComponentUrl)
+      registerWebComponent(p.spec.detailComponentUrl)
+    });
   }
 
   const registerWebComponent = (url) => {
@@ -31,12 +29,12 @@ const ProductsProvider = ({children}) => {
   useEffect(() => {
     setProducts(prev => { return { ...prev, loading: true }});
     Axios.get(SERVICE_URL + '/api/products')
-      .then(response => handleProducts(response))
+      .then(response => handleProducts(response.data))
       .catch(err => setProducts({ loading: false, error: err }));
   }, []);
   
   return (
-    <ProductsContext.Provider value={[products, setProducts, registerWebComponent]}>{children}</ProductsContext.Provider>
+    <ProductsContext.Provider value={[products, setProducts, handleProducts]}>{children}</ProductsContext.Provider>
   );
 }
 
