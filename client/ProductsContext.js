@@ -26,7 +26,7 @@ const ProductsProvider = ({children}) => {
 
   const registerComponent = (url) => {
     if (url) {
-      console.log('Registering web component ', url);
+      console.log('Registering component', url);
       var script = document.createElement('script');
       script.setAttribute('src', url);
       document.body.appendChild(script);  
