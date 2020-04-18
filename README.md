@@ -77,7 +77,7 @@ registerAsWebComponent(XHypoCreateComponent, "xhypo-create");
 
 ### Vue
 
-The [xhypo-update](lib/xhypo-update) component is implemented using Vue.
+The [xhypo-detail](lib/xhypo-detail) component is implemented using Vue.
 ```
 <template>
   <div>Welcome from Vue World</div>
