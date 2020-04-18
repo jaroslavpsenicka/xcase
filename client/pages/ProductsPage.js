@@ -39,7 +39,7 @@ const ProductsPage = () => {
 
   const ProductCard = ({ product }) => (
     <Col md={6} lg={4} xl={3}>
-      <Col md={12} className="h-150px b-2-ddd p-2 pl-3 mb-4 bg-white text-dark">
+      <Col md={12} className="h-150px b-2-ddd p-2 pl-3 mb-4 bg-white text-dark rounded-lg">
         <div className="col-md-10 cursor-pointer" onClick={() => navigate('/products/' + product.name)}>
           <h5 className="pt-2 text-primary">{product.spec.label ? product.spec.label : product.name}</h5>
           <div className="h-100px text-secondary">{product.spec.description ? product.spec.description : 'No description.'}</div>
@@ -57,7 +57,8 @@ const ProductsPage = () => {
           onClick={() => inputFile.current.click()}/>
         Products
       </h4>
-      <Row>
+      <div className="text-secondary">The page shows list of registered products.</div>
+      <Row className="mt-5">
         { 
           products.loading ? <Loading /> : 
           products.error ? <LoadingError error = { products.error }/> :  

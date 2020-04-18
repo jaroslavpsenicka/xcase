@@ -173,6 +173,7 @@ const CasesPage = () => {
           onClick={() => setShowOverview(!showOverview)}/>
         Cases
       </h4>
+      <div className="text-secondary">The page shows list of cases of various types.</div>
       <CreateCaseDialog 
         products={products ? products.data : undefined}
         show={showCreateCaseDialog} 

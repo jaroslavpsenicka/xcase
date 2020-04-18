@@ -17,16 +17,20 @@ const App = () => {
   const CaseCreatePage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/CaseCreatePage'));  
   const CaseDetailPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/CaseDetailPage'));  
   const CasesPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/CasesPage'));  
+  const TasksPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/TasksPage'));  
   const ProductDetailPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/ProductDetailPage'));  
   const ProductsPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/ProductsPage'));
+  const SettingsPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/SettingsPage'));  
   const NoPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/NoPage'));
 
   const routes = {
     "/create-case/:productName": ({productName}) => <CaseCreatePage productName={productName}/>,
     "/cases": () => <CasesPage />,
     "/cases/:id": ({id}) => <CaseDetailPage caseId={id} />,
+    "/tasks": () => <TasksPage />,
     "/products": () => <ProductsPage />,
-    "/products/:name": ({name}) => <ProductDetailPage name={name} />
+    "/products/:name": ({name}) => <ProductDetailPage name={name} />,
+    "/settings": () => <SettingsPage />
   };
 
   useRedirect('/', '/cases');
