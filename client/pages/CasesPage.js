@@ -92,7 +92,7 @@ const CasesPage = () => {
   }
 
   const CaseRowKnownProduct = ({product, theCase}) => {
-    const dialogActions = product.spec.actions ? product.spec.actions.filter(a => a.showInDialog) : [];
+    const dialogActions = product.spec.actions ? product.spec.actions.filter(a => a.useModal) : [];
     return (
       <div className="p-2 pl-3 mb-1 bg-white text-secondary">
         <CaseActions theCase={theCase} />

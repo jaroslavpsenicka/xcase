@@ -50,7 +50,7 @@ Product.deleteMany({}, (err) => {
 				name: 'beautify',
 				label: 'Beautify',
 				description: 'Beautify the case',
-				showInDialog: true,
+				useModal: true,
 				componentUrl: '/ihypo-beautify.js'
 			}, {
 				name: 'download',

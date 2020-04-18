@@ -11,7 +11,7 @@
     "label": "Custom action",
     "description": "Custom action",
     "condition": "loanAmount > 1000",
-    "showInDialog": true,
+    "useModal": true,
     "componentUrl": "/xhypo-custom.js"
   }]
 }
