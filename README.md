@@ -57,6 +57,45 @@ The 'loanamount' attribute is propagated into the webcomponent from the case dat
 
 > Correct, the overview is not neccesarily accurate for all the cases.
 
+### Angular implementation
+
+The [xhypo-overview](lib/xhypo-overview) component is implemented using Angular and Angular Elements. No source since this is crazy chatty framework and there are bits and pieces all over the place.
+
+### React implementation
+
+The [xhypo-create](lib/xhypo-create) component is implemented using React and [react-webcomponentify](https://www.npmjs.com/package/react-webcomponentify).
+```
+import React from "react";
+import { registerAsWebComponent } from "react-webcomponentify";
+
+export const XHypoCreateComponent = props => (
+    <div>Hello from React World</div>
+);
+
+registerAsWebComponent(XHypoCreateComponent, "xhypo-create");
+```
+
+### Vue implemetation
+
+The [xhypo-update](lib/xhypo-update) component is implemented using Vue.
+```
+<template>
+  <div>Welcome from Vue World</div>
+</template>
+
+<script>
+export default {
+  name: "xhypo-detail",
+  components: {},
+  data() {},
+  methods: {}
+};
+</script>
+
+<style lang="scss">
+</style>
+```
+
 ## Summary and next steps
 
 The existing code shows implementation of webcomponents-based case list using React/Node. This is very basic implementation, may be extended heavily

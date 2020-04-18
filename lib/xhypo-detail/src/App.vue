@@ -3,15 +3,13 @@
 </template>
 
 <script>
-
 export default {
   name: "xhypo-detail",
   components: {},
   data() {
     return {};
   },
-  methods: {
-  }
+  methods: {}
 };
 </script>
 
