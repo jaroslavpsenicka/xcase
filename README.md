@@ -38,7 +38,9 @@ Once registered, the new case type is applied immediately and the second case ge
 - components are registered by [products context](client/ProductsContext.js) during it's initialization phase (see useEffect -- a new `script` element is created, configured and attached to document body),
 - to use the component, a dynamically-named component is constructed and used as overview, see [CaseOverview](client/components/CaseOverview.js) component.
 
-To implement an overview, a [webcomponets.org](http://webcomponents.org) should be used. Here is an example of the [IHYPO case type overview](client/static/ihypo-overview.js). Please note, the component must be registered under appropriate name (`<type-name>-overview`).
+### Rendering 
+
+To implement an component, a [webcomponets.org](http://webcomponents.org) should be used. Here is an example of the [IHYPO case type overview](client/static/ihypo-overview.js). Please note, the component must be registered under appropriate name (`<type-name>-overview`).
 
 ```
 class IHypoOverview extends HTMLElement {
@@ -52,14 +54,25 @@ class IHypoOverview extends HTMLElement {
 // register the new custom element
 customElements.define('ihypo-overview', IHypoOverview)
 ```
-
 The 'loanamount' attribute is propagated into the webcomponent from the case data in form of attribute and respective value. Checkout the [CaseOverview](client/components/CaseOverview.js) for details.
 
 > Correct, the overview is not neccesarily accurate for all the cases.
 
+### Eventing
+
+To propagate certain information back into the host application, the web components has to use the CustomEvent mechanism. The host application must expect the event to come, for example, the ihypo-create.js uses the event to propagate the process start event as follows:
+```
+const submitButton = document.getElementById('submitButton');
+  submitButton.onclick = (event) => {
+    event.preventDefault();
+    this.dispatchEvent(new CustomEvent("submit", { detail: ... }));
+  } 
+}
+```
+
 ### Angular
 
-The [xhypo-overview](lib/xhypo-overview) component is implemented using Angular and Angular Elements. No source since this is crazy chatty framework and there are bits and pieces all over the place.
+The [xhypo-overview](lib/xhypo-overview) component is implemented using Angular and Angular Elements. No source since this is crazy chatty framework and there are bits and webcomponents-relevant pieces all over the place.
 
 ### React
 
