@@ -46,11 +46,18 @@ Product.deleteMany({}, (err) => {
 			overviewComponentUrl: '/ihypo-overview.js',
 			createComponentUrl: '/ihypo-create.js',
 			detailComponentUrl: '/ihypo-detail.js',
-			actions: {
-				create: {},
-				update: {},
-				custom: {}
-			} 
+			actions: [{
+				name: 'beautify',
+				label: 'Beautify',
+				description: 'Beautify the case',
+				showInDialog: true,
+				componentUrl: '/ihypo-beautify.js'
+			}, {
+				name: 'download',
+				label: 'Download',
+				description: 'Download as PDF',
+				componentUrl: '/ihypo-download.js'
+			}]
 		}
 	});	
 });

@@ -20,8 +20,9 @@ const ProductsProvider = ({children}) => {
 
   const registerComponents = (p) => {
     registerComponent(p.spec.overviewComponentUrl);
-    registerComponent(p.spec.createComponentUrl)
-    registerComponent(p.spec.detailComponentUrl)
+    registerComponent(p.spec.createComponentUrl);
+    registerComponent(p.spec.detailComponentUrl);
+    p.spec.actions.forEach(a => registerComponent(a.componentUrl));
   }
 
   const registerComponent = (url) => {

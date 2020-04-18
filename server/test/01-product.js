@@ -6,6 +6,7 @@ const file = (value) => {
   return {
     url: 'http://localhost:8080/api/products', 
     formData: {
+      baseUrl: "http://localhost:8080", 
       file: {
         value: JSON.stringify(value),
         options: {
@@ -23,6 +24,7 @@ describe('Product', () => {
 
   it('query products', (done) => {
     request.get('http://localhost:8080/api/products' , (error, response) => {
+      if (response.statusCode != 200) console.log(body);
       expect(response.statusCode).to.equal(200);
       done();
     });
@@ -40,7 +42,7 @@ describe('Product', () => {
     const contents = { name: "name" };
     request.post(file(contents), (error, response, body) => {
       expect(response.statusCode).to.equal(400);
-      expect(JSON.parse(body).error).to.equal("should have required property \'icon\'");
+      expect(JSON.parse(body).error).to.equal("should have required property \'label\'");
       done();
     });
   });

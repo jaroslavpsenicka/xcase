@@ -4,10 +4,22 @@
 
     "Action": {
       "type": "object",
-      "required": ["name", "componentUrl"],
+      "required": ["name", "label", "componentUrl"],
       "properties": {
         "name": { 
           "type": "string" 
+        },
+        "label": { 
+          "type":"string"
+        },
+        "description": { 
+          "type": "string"
+        },
+        "condition": { 
+          "type": "string"
+        },
+        "showInDialog": { 
+          "type": "boolean"
         },
         "componentUrl": { 
           "type": "string" 

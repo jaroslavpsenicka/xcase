@@ -6,17 +6,12 @@
   "overviewComponentUrl": "/xhypo-overview.js",
   "createComponentUrl": "/xhypo-create.js",
   "detailComponentUrl": "/xhypo-detail.js",
-  "actions": {
-    "create": {
-      "name": "",
-      "componentUrl": ""
-    },
-    "update": {
-      "name": "",
-      "componentUrl": ""
-    },
-    "custom": {
-      "componentUrl": ""
-    }
-  } 
+  "actions": [{
+    "name": "custom",
+    "label": "Custom action",
+    "description": "Custom action",
+    "condition": "loanAmount > 1000",
+    "showInDialog": true,
+    "componentUrl": "/xhypo-custom.js"
+  }]
 }

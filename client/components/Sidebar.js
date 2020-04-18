@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { A } from 'hookrouter';
-import { faHome, faCog, faCube } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faCog, faCube, faTasks } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled from 'styled-components';
 
@@ -24,9 +24,13 @@ const Sidebar = ({ visible }) => {
         <StyledNav className="vertical">
           <div className="mb-2">
             <FontAwesomeIcon icon={faHome} className="text-secondary"/>
-            <A className="pb-2 pl-2 font-weight-bold" href="/cases">DASHBOARD</A>
+            <A className="pb-2 pl-2 font-weight-bold" href="/cases">CASES</A>
           </div>
           <div className="mb-2">
+            <FontAwesomeIcon icon={faTasks} className="text-secondary"/>
+            <A className="pb-2 pl-2 font-weight-bold" href="/tasks">TASKS</A>
+          </div>
+          <div className="mb-2 mt-4">
             <FontAwesomeIcon icon={faCube} className="text-secondary"/>
             <A className="pb-2 pl-2 font-weight-bold" href="/products">PRODUCTS</A>
           </div>

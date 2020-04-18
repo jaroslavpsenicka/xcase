@@ -1,7 +1,7 @@
 {
   "$id": "http://datacase.org/schemas/schema.json",
   "type": "object",
-  "required": ["name", "label", "icon", "description", "overviewComponentUrl", "createComponentUrl", "detailComponentUrl", "actions"],
+  "required": ["name", "label", "overviewComponentUrl", "createComponentUrl", "detailComponentUrl"],
   "additionalProperties": false,
   "properties": {
     "name": {
@@ -26,12 +26,8 @@
       "type": "string"
     },
     "actions": {
-      "type": "object",
-      "additionalProperties": true,
-      "properties": {
-        "create": { "$ref": "common.json#/definitions/Action" },
-        "update": { "$ref": "common.json#/definitions/Action" }
-      }
+      "type": "array",
+      "items": { "$ref": "common.json#/definitions/Action" }
     }
   }
 }
