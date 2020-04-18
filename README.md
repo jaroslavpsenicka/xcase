@@ -57,11 +57,11 @@ The 'loanamount' attribute is propagated into the webcomponent from the case dat
 
 > Correct, the overview is not neccesarily accurate for all the cases.
 
-### Angular implementation
+### Angular
 
 The [xhypo-overview](lib/xhypo-overview) component is implemented using Angular and Angular Elements. No source since this is crazy chatty framework and there are bits and pieces all over the place.
 
-### React implementation
+### React
 
 The [xhypo-create](lib/xhypo-create) component is implemented using React and [react-webcomponentify](https://www.npmjs.com/package/react-webcomponentify).
 ```
@@ -75,7 +75,7 @@ export const XHypoCreateComponent = props => (
 registerAsWebComponent(XHypoCreateComponent, "xhypo-create");
 ```
 
-### Vue implemetation
+### Vue
 
 The [xhypo-update](lib/xhypo-update) component is implemented using Vue.
 ```
@@ -95,6 +95,11 @@ export default {
 <style lang="scss">
 </style>
 ```
+
+### Furure framework
+
+Use your future fancy framework as long as it supports the webcomponents standard. 
+Use webcomponents, stop the framework wars, do something meaningful.
 
 ## Summary and next steps
 
