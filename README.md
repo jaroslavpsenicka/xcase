@@ -67,12 +67,11 @@ The existing code shows implementation of webcomponents-based case list using Re
 - [x] [implement some form of a new case button and use a web component to create case](https://github.com/jaroslavpsenicka/xcase/issues/4) 
 - [x] [implement better validations during JSON upload](https://github.com/jaroslavpsenicka/xcase/issues/5)
 - [x] [implement some components](https://github.com/jaroslavpsenicka/xcase/issues/6) using [Angular](https://medium.com/@IMM9O/web-components-with-angular-d0205c9db08f)/[React](https://dev.to/frustigor/the-fastest-way-to-create-web-components-with-react-403)/[Vue](https://dev.to/aumayeung/create-web-components-with-vue-js-2bb0)
-- [ ] [allow registering custom case actions](https://github.com/jaroslavpsenicka/xcase/issues/7)
-- [ ] [allow registering case-type/product-specific settings component](https://github.com/jaroslavpsenicka/xcase/issues/8)
+- [x] [allow registering custom case actions](https://github.com/jaroslavpsenicka/xcase/issues/7)
 
 lower priority tasks:
 
-- allow processing REST or Kafka-based events, for example case creation notification
-- consider using [shadow DOM in webcomponents](https://www.grapecity.com/blogs/using-web-components-with-react-2019), [TM crash course](https://www.youtube.com/watch?v=PCWaFLy3VUo)
-- consider versioning and rollbacks of misbehaving JSONs
-- consider receiving and displaying notifiations
+- [ ] allow registering case-type/product-specific settings component
+- [ ] allow processing REST or Kafka-based events, for example case creation notification
+- [ ] consider versioning and rollbacks of misbehaving JSONs
+- [ ] consider receiving and displaying notifiations
