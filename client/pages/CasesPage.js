@@ -16,6 +16,8 @@ import ActionDialog from '../components/ActionDialog';
 
 import styled from 'styled-components';
 
+const SERVICE_URL = process.env.REACT_APP_SERVICE_URL || '';
+
 const StyledProductImage = styled.img`
   position: absolute;
   width: 32px;
@@ -38,6 +40,7 @@ const CasesPage = () => {
   const { cases, creating, updating, update } = useContext(CasesContext);
   const [ products ] = useContext(ProductsContext);
   const [ showCreateCaseDialog, setShowCreateCaseDialog ] = useState(false);
+  const [ removeDialog, setRemoveDialog ] = useState(false);
   const [ customDialogs, setCustomDialogs ] = useState({});
 
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -52,14 +55,23 @@ const CasesPage = () => {
     navigate('/create-case/' + product.name);
   }
 
-  const showAction = (action) => {
-    return customDialogs[action.name];
-  }
-
-  const setShowAction = (action, show) => {   
-    const values = {...customDialogs};
-    values[action.name] = show;
-    setCustomDialogs(values);
+  const setShowAction = (theCase, action, show) => {   
+    switch (action.view) {
+      case 'dialog':
+        const values = {...customDialogs};
+        values[action.name] = show;
+        setCustomDialogs(values);
+        break;
+      case 'window':
+        const url = action.componentUrl
+          .replace('${SERVICE_URL}', SERVICE_URL)
+          .replace('${CASE_ID}', theCase.id)
+        window.open(url);
+        break;
+      default:
+        navigate('/cases/' + theCase.id + '/action/' + action.name);
+        break;
+    }
   }
 
   const NoCases = () => (
@@ -68,22 +80,20 @@ const CasesPage = () => {
 
   const CaseActions = ({theCase}) => {
     const product = products.data.find(p => p.name === theCase.product);
-    const items = product.spec.actions ? product.spec.actions.map(a => <CaseAction action={a} key={a.name}/>) : null;
+    const items = product.spec.actions ? product.spec.actions.map(a => {
+      return a.view === 'separator' ? <Dropdown.Divider key='-'/> : <CaseAction theCase={theCase} action={a} key={a.name}/>
+    }) : null;
 
     return (
       <Dropdown className="float-right cursor-pointer">
         <Dropdown.Toggle as={CustomToggle}></Dropdown.Toggle>
-        <MarginDropdownMenu>
-          { items }
-          <Dropdown.Divider />
-          <Dropdown.Item>Remove</Dropdown.Item>
-        </MarginDropdownMenu>
+        <MarginDropdownMenu>{items}</MarginDropdownMenu>
       </Dropdown>
     )
   }
 
-  const CaseAction = ({action}) => {
-    return <Dropdown.Item key={action.name} onClick={() => setShowAction(action, true)}>{action.label}</Dropdown.Item>
+  const CaseAction = ({theCase, action}) => {
+    return <Dropdown.Item key={action.name} onClick={() => setShowAction(theCase, action, true)}>{action.label}</Dropdown.Item>
   }
 
   const CaseRow = ({theCase}) => {
@@ -92,7 +102,7 @@ const CasesPage = () => {
   }
 
   const CaseRowKnownProduct = ({product, theCase}) => {
-    const dialogActions = product.spec.actions ? product.spec.actions.filter(a => a.useModal) : [];
+    const dialogActions = product.spec.actions ? product.spec.actions.filter(a => a.view === 'dialog') : [];
     return (
       <div className="p-2 pl-3 mb-1 bg-white text-secondary">
         <CaseActions theCase={theCase} />
@@ -147,10 +157,10 @@ const CasesPage = () => {
       key={a.name} 
       product={product} 
       action={a} 
-      show={showAction(a)} 
-      onCancel={() => setShowAction(a, false)}
+      show={customDialogs[a.name]} 
+      onCancel={() => setShowAction(theCase, a, false)}
       onPerform={() => { 
-        setShowAction(a, false); 
+        setShowAction(theCase, a, false); 
         update(theCase.id);
       }}/>
     ); 

@@ -5,6 +5,12 @@ import Row from 'react-bootstrap/Row';
 import Loading from '../components/Loading';
 import LoadingError from '../components/LoadingError';
 
+import styled from 'styled-components';
+
+const Separator = styled.div`
+  border-bottom: 1px solid lightgray;
+`
+
 const ProductDetailPage = ({ name }) => {
 
   const [ products ] = useContext(ProductsContext);
@@ -53,23 +59,35 @@ const ProductDetailPage = ({ name }) => {
       <div className="container ml-0">
         <Row className="p-1 text-secondary">
           <div className="col-md-3"></div>
-          <div className="col-md-4 pl-0">Component</div>
-          <div className="col-md-5 pl-0">Description</div>
+          <div className="col-md-3 pl-0">Component</div>
+          <div className="col-md-2 pl-0">Type</div>
+          <div className="col-md-4 pl-0">Description</div>
         </Row>
       </div>
-      { actions.map(a => <Action key={a.name} action={a}/>) }
+      { actions.map(a => a.view === 'separator' ? <ActionSeparator key={a.name}/> : <Action key={a.name} action={a}/>) }
     </>
+  )
+
+  const ActionSeparator = () => (
+    <div className="bg-white p-1">
+      <Separator className="my-1"/>
+    </div>
   )
 
   const Action = ({action}) => (
     <div className="container ml-0">
       <Row className="p-1 bg-white text-primary">
         <div className="col-md-3 pl-1">{action.label}</div>
-        <div className="col-md-4 pl-0"><a href={action.componentUrl} target="_new">{action.componentUrl}</a></div>
-        <div className="col-md-5 pl-0">{action.description}</div>
+        <div className="col-md-3 pl-0"><ComponentUrl action={action}/></div>
+        <div className="col-md-2 pl-1">{action.view}</div>
+        <div className="col-md-4 pl-0">{action.description}</div>
       </Row>
     </div>
   )
+
+  const ComponentUrl = ({action}) => {
+    return action.view !== 'window' ? <a href={action.componentUrl} target="_new">{action.componentUrl}</a> : null;
+  }
 
   const NoSuchProduct = () => (
     <div className="mt-5 text-center text-secondary">No, there is no such product.</div>

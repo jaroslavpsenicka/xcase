@@ -1,34 +1,33 @@
 class IHypoBeautify extends HTMLElement {
-  connectedCallback () {
-    this.innerHTML = `      
-      <div>
-        <div class="modal-header">
-          <h5 class="modal-title">Beautify the case</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Do you want to update the case to be more elegant, sexy and demanding?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Are you crazy?</button>
-          <button id="cancelButton" type="button" class="btn btn-secondary" data-dismiss="modal">Not yet</button>
-          <button id="performButton" type="button" class="btn btn-primary">Do it please</button>
-        </div>
-      </div>`;
 
+  connectedCallback () {
+
+    this.innerHTML = `<form>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="description">Let's start with the name</label>
+          <div class="input-group">
+            <input id="description" type="text" class="form-control" placeholder="František Novák, dům u lesa" value="František Novák, dům u lesa">
+          </div>
+        </div>
+      </div>
+      <div class="mt-4 float-right">
+        <button id="cancelButton" type="cancel" class="btn btn-secondary ml-2">Cancel</button>
+        <button id="submitButton" type="submit" class="btn btn-primary ml-2">Beautify!</button>
+      </div>
+    </form>`;
+    
     const cancelButton = document.getElementById('cancelButton');
     cancelButton.onclick = (event) => {
       event.preventDefault();
       this.dispatchEvent(new CustomEvent("cancel"));
-    } 
+    }; 
 
-    const performButton = document.getElementById('performButton');
-    performButton.onclick = (event) => {
+    const submitButton = document.getElementById('submitButton');
+    submitButton.onclick = (event) => {
       event.preventDefault();
-      this.dispatchEvent(new CustomEvent("perform"));
-    } 
+      this.dispatchEvent(new CustomEvent("submit"));
+    }; 
   }
 }
 

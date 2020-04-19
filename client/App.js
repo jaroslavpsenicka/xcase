@@ -16,6 +16,7 @@ const App = () => {
   const Sidebar = loadable(() => import(/* webpackChunkName: "components" */ './components/Sidebar'));  
   const CaseCreatePage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/CaseCreatePage'));  
   const CaseDetailPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/CaseDetailPage'));  
+  const CaseActionPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/CaseActionPage'));  
   const CasesPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/CasesPage'));  
   const TasksPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/TasksPage'));  
   const ProductDetailPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/ProductDetailPage'));  
@@ -27,6 +28,7 @@ const App = () => {
     "/create-case/:productName": ({productName}) => <CaseCreatePage productName={productName}/>,
     "/cases": () => <CasesPage />,
     "/cases/:id": ({id}) => <CaseDetailPage caseId={id} />,
+    "/cases/:id/action/:name": ({id, name}) => <CaseActionPage caseId={id} name={name}/>,
     "/tasks": () => <TasksPage />,
     "/products": () => <ProductsPage />,
     "/products/:name": ({name}) => <ProductDetailPage name={name} />,

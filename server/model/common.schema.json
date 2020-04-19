@@ -4,7 +4,6 @@
 
     "Action": {
       "type": "object",
-      "required": ["name", "label", "componentUrl"],
       "properties": {
         "name": { 
           "type": "string" 
@@ -18,8 +17,9 @@
         "condition": { 
           "type": "string"
         },
-        "useModal": { 
-          "type": "boolean"
+        "view": { 
+          "type": "string",
+          "enum": ["standard", "dialog", "window", "separator"]
         },
         "componentUrl": { 
           "type": "string" 

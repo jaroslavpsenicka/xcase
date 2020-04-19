@@ -22,7 +22,9 @@ const ProductsProvider = ({children}) => {
     registerComponent(p.spec.overviewComponentUrl);
     registerComponent(p.spec.createComponentUrl);
     registerComponent(p.spec.detailComponentUrl);
-    p.spec.actions.forEach(a => registerComponent(a.componentUrl));
+    p.spec.actions
+      .filter(a => a.view !== 'window')
+      .forEach(a => registerComponent(a.componentUrl));
   }
 
   const registerComponent = (url) => {

@@ -50,13 +50,22 @@ Product.deleteMany({}, (err) => {
 				name: 'beautify',
 				label: 'Beautify',
 				description: 'Beautify the case',
-				useModal: true,
+				view: 'standard',
 				componentUrl: '/ihypo-beautify.js'
 			}, {
 				name: 'download',
 				label: 'Download',
 				description: 'Download as PDF',
-				componentUrl: '/ihypo-download.js'
+				view: 'window',
+				componentUrl: '${SERVICE_URL}/api/cases/${CASE_ID}/download'
+			}, {
+				view: 'separator',
+			}, {
+				name: 'remove',
+				label: 'Remove',
+				description: 'Remove the case',
+				view: 'dialog',
+				componentUrl: '/ihypo-remove.js'
 			}]
 		}
 	});	
@@ -260,6 +269,15 @@ module.exports = function (app) {
 				return res.status(201).json({ ...caseObject._doc });
 			});	
 		});
+	});
+
+	app.get('/api/cases/:id/download', (req, res) => {
+    res.setHeader('Content-disposition', 'attachment; filename= ' + req.params.id + '.json');
+    res.setHeader('Content-type', 'application/json');
+    res.write('{}', function (err) {
+			if (err) throw err;
+			res.end();
+    });
 	});
 
 	app.get('/api/creating/:id', (req, res) => {
