@@ -9,7 +9,7 @@ class RemoveDialog extends HTMLElement {
           </button>
         </div>
         <div class="modal-body">
-          <p>Do you want to remove the case? You may miss it later.</p>
+          <p>Do you want to remove the case?<br>You may miss it later.</p>
         </div>
         <div class="modal-footer">
           <button id="cancelButton" type="button" class="btn btn-secondary" data-dismiss="modal">Not yet</button>
