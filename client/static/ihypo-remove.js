@@ -4,7 +4,7 @@ class RemoveDialog extends HTMLElement {
       <div>
         <div class="modal-header">
           <h5 class="modal-title">Remove the case</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button id="dismissButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -16,6 +16,12 @@ class RemoveDialog extends HTMLElement {
           <button id="performButton" type="button" class="btn btn-primary">Yes please</button>
         </div>
       </div>`;
+
+    const dismissButton = document.getElementById('dismissButton');
+    dismissButton.onclick = (event) => {
+      event.preventDefault();
+      this.dispatchEvent(new CustomEvent("cancel"));
+    } 
 
     const cancelButton = document.getElementById('cancelButton');
     cancelButton.onclick = (event) => {
