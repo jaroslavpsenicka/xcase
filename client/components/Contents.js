@@ -1,17 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 
-const StyledContentsWithSidebar = styled.div`
-  margin-left: 200px;
-`
-const StyledContentsWithoutSidebar = styled.div`
-  margin-left: 0px;
-`
-
-const Contents = ({ withSidebar, children }) => {
-  return withSidebar ? 
-    <StyledContentsWithSidebar className="d-flex flex-column">{children}</StyledContentsWithSidebar> :
-    <StyledContentsWithoutSidebar className="d-flex flex-column">{children}</StyledContentsWithoutSidebar>
-}
+const Contents = ({ children }) => (
+  <div className="flex-fill flex-grow-1 p-4">{children}</div>
+)
 
 export default Contents;

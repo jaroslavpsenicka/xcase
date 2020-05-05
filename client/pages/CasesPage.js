@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faComment as faCommentO } from '@fortawesome/free-regular-svg-icons'
-import { faPlus, faAngleDown, faComment, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { faListAlt as faListAlt0 } from '@fortawesome/free-regular-svg-icons'
+import { faPlus, faAngleDown, faListAlt, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { ProductsContext } from '../ProductsContext';
 import { CasesContext } from '../CasesContext';
 import { navigate, A} from 'hookrouter';
@@ -173,12 +173,12 @@ const CasesPage = () => {
   }
   
   return (
-    <div className="p-4">
+    <div>
       <h4 className="text-muted font-weight-light text-uppercase mb-4">
         <FontAwesomeIcon icon={faPlus} className="mr-2 float-right cursor-pointer text-success"
           title="Add new case"
           onClick={() => setShowCreateCaseDialog(true)}/>
-        <FontAwesomeIcon icon={showOverview ? faComment : faCommentO} className="mr-4 float-right cursor-pointer text-secondary"
+        <FontAwesomeIcon icon={showOverview ? faListAlt : faListAlt0} className="mr-4 float-right cursor-pointer text-secondary"
           title="Toggle case overview"
           onClick={() => setShowOverview(!showOverview)}/>
         Cases

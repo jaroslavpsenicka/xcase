@@ -4,16 +4,19 @@ import loadable from '@loadable/component'
 import Axios from 'axios';
 import { CasesProvider } from './CasesContext';
 import { ProductsProvider } from './ProductsContext';
+import { AppProvider } from './AppContext';
 
 import './App.css';
 
 const App = () => {
 
-  const [ sidebarVisible, toggleSidebarVisible ] = useState({ visible: true });
+  const [ sidebarVisible, setSidebarVisible ] = useState(true);
+  const [ addonViewVisible, setAddonViewVisible ] = useState(false);
 
   const Header = loadable(() => import(/* webpackChunkName: "components" */ './components/Header'));  
   const Contents = loadable(() => import(/* webpackChunkName: "components" */ './components/Contents'));  
   const Sidebar = loadable(() => import(/* webpackChunkName: "components" */ './components/Sidebar'));  
+  const AddonContainer = loadable(() => import(/* webpackChunkName: "components" */ './components/AddonContainer'));  
   const CaseCreatePage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/CaseCreatePage'));  
   const CaseDetailPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/CaseDetailPage'));  
   const CaseActionPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/CaseActionPage'));  
@@ -47,15 +50,20 @@ const App = () => {
   }
 
   return (
-    <ProductsProvider>
-      <CasesProvider>
-        <Header toggleSidebar={() => toggleSidebarVisible(!sidebarVisible)}/>
-        <Sidebar visible={sidebarVisible}/>
-        <Contents withSidebar={sidebarVisible}>
-          <RouteContainer />
-        </Contents>
-      </CasesProvider>
-    </ProductsProvider>
+    <AppProvider>
+      <Header toggleSidebar={() => setSidebarVisible(!sidebarVisible)} showAddonView={(show) => setAddonViewVisible(show)}/>
+      <div className="d-flex">
+        <ProductsProvider>
+          <CasesProvider>
+            <Sidebar visible={sidebarVisible}/>
+            <Contents>
+              <RouteContainer />
+            </Contents>
+            <AddonContainer visible={addonViewVisible} />
+          </CasesProvider>
+        </ProductsProvider>
+      </div>  
+    </AppProvider>
   )
 }
 

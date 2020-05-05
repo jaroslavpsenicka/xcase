@@ -14,7 +14,7 @@ const CaseActionPage = ({ caseId, name }) => {
   const action = product.spec.actions.find(a => a.name === name);
   
   return (
-    <div className="p-4">
+    <div>
       <h4 className="text-muted font-weight-light text-uppercase mb-4">CASES / {theCase.name} / {action.label}</h4>
       <CaseAction theCase={theCase} action={action}/>
     </div>

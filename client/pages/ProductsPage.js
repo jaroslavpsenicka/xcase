@@ -49,7 +49,7 @@ const ProductsPage = () => {
   )
 
   return (  
-    <div className="p-4">
+    <div>
       <input type="file" name="file" id="file" ref={inputFile} className="d-none" 
         onChange={(event) => onUpload(event)} />
       <h4 className="w-100 text-muted font-weight-light text-uppercase mb-4 mr-3">
@@ -58,7 +58,7 @@ const ProductsPage = () => {
         Products
       </h4>
       <div className="text-secondary">The page shows list of registered products.</div>
-      <Row className="mt-5">
+      <Row className="mt-4">
         { 
           products.loading ? <Loading /> : 
           products.error ? <LoadingError error = { products.error }/> :  

@@ -2,16 +2,16 @@
   "name": "xhypo", 
   "label": "Hogofogo škvára",
   "description": "Premium stuff, good one, nigga.", 
-  "icon": "/xhypo.svg",
-  "overviewComponentUrl": "/xhypo-overview.js",
-  "createComponentUrl": "/xhypo-create.js",
-  "detailComponentUrl": "/xhypo-detail.js",
+  "icon": "/products/xhypo.svg",
+  "overviewComponentUrl": "/products/xhypo-overview.js",
+  "createComponentUrl": "/products/xhypo-create.js",
+  "detailComponentUrl": "/products/xhypo-detail.js",
   "actions": [{
     "name": "custom",
     "label": "Custom action",
     "description": "Custom action",
     "condition": "loanAmount > 1000",
     "view": "standard",
-    "componentUrl": "/xhypo-custom.js"
+    "componentUrl": "/products/xhypo-custom.js"
   }]
 }

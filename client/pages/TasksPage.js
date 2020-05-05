@@ -5,7 +5,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 const TasksPage = () => {
 
   return (
-    <div className="p-4">
+    <div>
       <h4 className="text-muted font-weight-light text-uppercase mb-4">
         <FontAwesomeIcon icon={faPlus} className="mr-2 float-right cursor-pointer text-success"
           title="Create task"/>

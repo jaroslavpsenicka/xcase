@@ -1,5 +1,5 @@
 body {
-    background-color: #e8edf3!important;
+    background-color: #ecf3f5 !important;
 }
 
 .cursor-pointer {
@@ -26,6 +26,10 @@ body {
 
 .h-50px {
     height: 50px;
+}
+
+.h-70px {
+    height: 70px;
 }
 
 .h-100px {

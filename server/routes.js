@@ -9,6 +9,8 @@ const config = require('./config');
 const log4js = require('log4js');
 const multer = require('multer');
 const fs = require('fs');
+const AssistantV2 = require('ibm-watson/assistant/v2');
+const { IamAuthenticator } = require('ibm-watson/auth');
 
 const { ProductDescriptorValidationError } = require('./errors');
 
@@ -27,7 +29,11 @@ const productSchema = require('./model/product.schema.json');
 ajv.addSchema(commonSchema, 'common');
 ajv.addSchema(productSchema, 'product');
 
-const CREATE_UUID = '4ca613f3-3f54-419e-b5e6-9dfab9796980';
+const assistant = new AssistantV2({
+	authenticator: new IamAuthenticator({ apikey: config.assistant.apikey }),
+	url: config.assistant.url,
+	version: config.assistant.version
+});
 
 const mortgage1 = new ObjectId('000000000001');	
 Product.deleteMany({}, (err) => {	
@@ -310,6 +316,71 @@ module.exports = function (app) {
 			});
 		});
 	});
+
+	// Addons
+
+	app.get('/api/addons', (req, res) => {
+		return res.status(200).json([{  
+			name: 'docs',
+			label: 'Documents',
+			description: 'Shows links to important documents',
+			iconUrl: '/addon-docs.svg',
+			iconSelectedUrl: '/addon-docs-selected.svg',
+			componentUrl: '/addon-docs.js'
+		}, {  
+			name: 'calc',
+			label: 'Calculators',
+			description: 'Contains more or less interesting calculators',
+			iconUrl: '/addon-calc.svg',
+			iconSelectedUrl: '/addon-calc-selected.svg',
+			componentUrl: '/addon-calc.js'
+		}, {  
+			name: 'chat',
+			label: 'Chat',
+			description: 'Chat with a bot',
+			iconUrl: '/addon-chat.svg',
+			iconSelectedUrl: '/addon-chat-selected.svg',
+			componentUrl: '/addon-chat.js'
+		}]);
+	});
+
+	// Assistant routes
+
+	app.post('/api/assistant', (req, res) => {
+		if (!config.assistant.id) {
+			return res.status(503).json({ error: 'service not available' });
+		} else if (config.assistant.id === 'TEST') {
+			setTimeout(() => {
+				return res.status(200).json({ session_id: 'test-session' });
+			}, 2000);
+		} else {
+			const payload = { assistantId: config.assistant.id };
+			assistant.createSession(payload).then(response => {
+				return res.status(200).json(response.result);
+			}).catch(err => {
+				console.log(err);
+				return res.status(500).json({ error: err.message });
+			});
+		}
+	});
+
+	app.post('/api/assistant/:sesion', (req, res) => {
+		const payload = { assistantId: config.assistant.id, sessionId: req.params.session, input: req.body };
+		assistant.message(payload, (err, response) => {
+			if (err) throw err;
+      return res.json(response.result);
+		});
+	});
+
+	app.delete('/api/assistant/:sesion', (req, res) => {
+		const payload = { assistantId: config.assistant.id, sessionId: req.params.session };
+		assistant.deleteSession(payload, (err, response) => {
+			if (err) throw err;
+      return res.json(response);
+		});
+	});
+
+	// Misc routes
 
 	app.get('/swagger.json', (err, res) => {
     res.status(200).json(swagger.json());

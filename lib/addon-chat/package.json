@@ -1,0 +1,53 @@
+{
+  "name": "addon-chat",
+  "version": "0.1.0",
+  "private": true,
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "webpack-dev-server --content-base dist",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "JP",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-syntax-class-properties": "^7.2.0",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "@types/react": "^16.9.17",
+    "babel-loader": "^8.0.5",
+    "copy-webpack-plugin": "^4.6.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "react-web-component-style-loader": "^0.1.4-alpha",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/react-fontawesome": "^0.1.9",
+    "axios": "^0.19.2",
+    "font-awesome": "^4.7.0",
+    "preact": "^8.4.2",
+    "preact-compat": "^3.18.4",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-fontawesome": "^1.7.1",
+    "react-web-component": "^2.0.1",
+    "styled-components": "^5.1.0",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "react-hot-loader/babel",
+      "@babel/plugin-transform-runtime"
+    ]
+  }
+}
