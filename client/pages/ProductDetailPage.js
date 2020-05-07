@@ -71,7 +71,6 @@ const ProductDetailPage = ({ name }) => {
       <thead>
         <tr>
           <th className="border-top-0" scope="col"></th>
-          <th className="border-top-0 text-secondary" scope="col">Component</th>
           <th className="border-top-0 text-secondary" scope="col">Description</th>
         </tr>
       </thead>
@@ -83,14 +82,13 @@ const ProductDetailPage = ({ name }) => {
 
   const ActionSeparator = () => (
     <tr>
-      <td colSpan="4" className="text-secondary text-center">separator</td>
+      <td colSpan="2" className="text-secondary text-center">separator</td>
     </tr>
   )
 
   const Action = ({action}) => (
     <tr>
       <td scope="col" className="font-weight-bold">{action.label}</td>
-      <td scope="col">{action.view !== 'window' ? action.componentUrl : null}</td>
       <td scope="col">{action.description}</td>
     </tr>
   )

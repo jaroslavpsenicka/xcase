@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { AppContext } from '../AppContext';
 
 const ChatContainer = styled.div`
-  width: 350px;
+  width: 300px;
+  min-width: 300px;
   height: calc(100vh - 70px);
 `
 

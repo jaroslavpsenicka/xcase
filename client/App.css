@@ -1,4 +1,5 @@
 body {
+    min-width: 1024px;
     background-color: #ecf3f5 !important;
 }
 

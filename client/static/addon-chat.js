@@ -9565,6 +9565,23 @@ module.exports = _arrayWithHoles;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray */ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
+}
+
+module.exports = _arrayWithoutHoles;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
@@ -9674,6 +9691,21 @@ module.exports = _inherits;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/iterableToArray.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/iterableToArray.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js ***!
@@ -9724,6 +9756,21 @@ function _nonIterableRest() {
 }
 
 module.exports = _nonIterableRest;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+module.exports = _nonIterableSpread;
 
 /***/ }),
 
@@ -9813,6 +9860,29 @@ function _taggedTemplateLiteral(strings, raw) {
 }
 
 module.exports = _taggedTemplateLiteral;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/toConsumableArray.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
+
+var iterableToArray = __webpack_require__(/*! ./iterableToArray */ "./node_modules/@babel/runtime/helpers/iterableToArray.js");
+
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray */ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
+
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread */ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
 
 /***/ }),
 
@@ -45218,18 +45288,24 @@ module.exports = function(originalModule) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
-/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/taggedTemplateLiteral */ "./node_modules/@babel/runtime/helpers/taggedTemplateLiteral.js");
-/* harmony import */ var _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Loading */ "./src/Loading.js");
-/* harmony import */ var _LoadingError__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./LoadingError */ "./src/LoadingError.js");
-/* harmony import */ var _static_photo_jpg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../static/photo.jpg */ "./static/photo.jpg");
+/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/taggedTemplateLiteral */ "./node_modules/@babel/runtime/helpers/taggedTemplateLiteral.js");
+/* harmony import */ var _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "../../node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Loading */ "./src/Loading.js");
+/* harmony import */ var _LoadingError__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./LoadingError */ "./src/LoadingError.js");
+/* harmony import */ var _static_photo_jpg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../static/photo.jpg */ "./static/photo.jpg");
+/* harmony import */ var _static_avatar_svg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../static/avatar.svg */ "./static/avatar.svg");
+
 
 
 
@@ -45238,8 +45314,18 @@ __webpack_require__.r(__webpack_exports__);
   enterModule && enterModule(module);
 })();
 
+function _templateObject4() {
+  var data = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_2___default()(["\n  max-height: calc(100vh - 280px);\n  padding-right: 10px;\n"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject3() {
-  var data = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_1___default()(["\n  resize: none;\n"]);
+  var data = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_2___default()(["\n  resize: none;\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -45249,7 +45335,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_1___default()(["\n  width: 32px;\n  height: 32px;\n  filter: grayscale(100%);\n  opacity: 0.8;\n"]);
+  var data = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_2___default()(["\n  width: 32px;\n  height: 32px;\n  filter: grayscale(100%);\n  opacity: 0.8;\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -45259,7 +45345,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_1___default()(["\n  width: 32px;\n  height: 32px;\n"]);
+  var data = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_2___default()(["\n  width: 32px;\n  height: 32px;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -45278,45 +45364,87 @@ var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoader
 
 
 
+
+
+
 var SERVICE_URL = 'http://localhost:8080';
-var AvatarImage = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].img(_templateObject());
-var UserImage = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].img(_templateObject2());
-var NonResizableTextArea = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].textarea(_templateObject3());
+var OPERATOR = 'Kiki';
+var USER = 'You';
+var AvatarImage = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].img(_templateObject());
+var UserImage = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].img(_templateObject2());
+var NonResizableTextArea = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].textarea(_templateObject3());
+var ChatListContainer = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].div(_templateObject4());
+var styledLoadingImage = {
+  width: '20px !important',
+  height: '20px',
+  margin: '12px auto'
+};
 
 var Chat = function Chat() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])({
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])({
     loading: true
   }),
-      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
-      chatData = _useState2[0],
-      setChatData = _useState2[1];
+      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState, 2),
+      session = _useState2[0],
+      setSession = _useState2[1];
 
-  var handleResponse = function handleResponse(response) {
-    setChatData({
-      loading: false,
-      data: [{
-        id: '441646514',
-        avatar: '/avatar.svg',
-        title: 'Kiki, operator',
-        message: "What's up?",
-        orientation: 'left',
-        date: new Date()
-      }, {
-        id: '441646515',
-        avatar: '/avatar.svg',
-        title: 'You',
-        message: "Hey, the case kind of sucks",
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])([]),
+      _useState4 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState3, 2),
+      chatData = _useState4[0],
+      setChatData = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(false),
+      _useState6 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState5, 2),
+      waitingForResponse = _useState6[0],
+      setWaitingForResponse = _useState6[1];
+
+  var handleSubmit = function handleSubmit(message) {
+    setWaitingForResponse(true);
+    setChatData(function (prev) {
+      return [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(prev), [{
         orientation: 'right',
-        date: new Date()
-      }]
+        message: message,
+        timestamp: Date.now()
+      }]);
+    });
+    axios__WEBPACK_IMPORTED_MODULE_4___default.a.post(SERVICE_URL + '/api/assistant/' + session.session_id + '/message', {
+      text: message
+    }).then(function (response) {
+      return handleResponse(response);
+    })["catch"](function (err) {
+      return handleError(err);
     });
   };
 
-  Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
-    axios__WEBPACK_IMPORTED_MODULE_3___default.a.post(SERVICE_URL + '/api/assistant').then(function (response) {
-      return handleResponse(response);
+  var handleResponse = function handleResponse(response) {
+    setWaitingForResponse(false);
+    setChatData(function (prev) {
+      return [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(prev), [response.data]);
+    });
+  };
+
+  var handleError = function handleError() {
+    setWaitingForResponse(false);
+    setChatData(function (prev) {
+      return [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(prev), [{
+        err: err.response.data
+      }]);
+    });
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_3__["useEffect"])(function () {
+    axios__WEBPACK_IMPORTED_MODULE_4___default.a.post(SERVICE_URL + '/api/assistant').then(function (response) {
+      setSession({
+        loading: false,
+        session_id: response.data.session_id
+      });
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post(SERVICE_URL + '/api/assistant/' + response.data.session_id + '/message').then(function (response) {
+        return handleResponse(response);
+      })["catch"](function (err) {
+        return handleError(err);
+      });
     })["catch"](function (err) {
-      return setChatData({
+      return setSession({
         loading: false,
         error: {
           message: err.response.data && err.response.data.error ? err.response.data.error : err
@@ -45325,86 +45453,148 @@ var Chat = function Chat() {
     });
   }, []);
 
-  var ChatInput = function ChatInput() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(NonResizableTextArea, {
+  var ChatInput = function ChatInput(_ref) {
+    var onSubmit = _ref.onSubmit;
+
+    var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(),
+        _useState8 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState7, 2),
+        msg = _useState8[0],
+        setMsg = _useState8[1];
+
+    var inputRef = Object(react__WEBPACK_IMPORTED_MODULE_3__["useRef"])(null);
+
+    var handleKeyUp = function handleKeyUp(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        handleSubmit();
+      }
+    };
+
+    var handleSubmit = function handleSubmit() {
+      onSubmit(msg);
+      setMsg('');
+      inputRef.current.focus();
+    };
+
+    Object(react__WEBPACK_IMPORTED_MODULE_3__["useEffect"])(function () {
+      inputRef.current.focus();
+    }, []);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(NonResizableTextArea, {
       type: "text",
       rows: "3",
-      placeholder: "type here",
-      className: "bg-white form-control mb-2"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
-      type: "submit",
-      className: "btn btn-primary float-right"
-    }, "Sumbit message"));
+      placeholder: "type here,  \u23CE  to submit",
+      className: "bg-white form-control mb-2",
+      ref: inputRef,
+      value: msg,
+      onChange: function onChange(event) {
+        return setMsg(event.target.value);
+      },
+      onKeyUp: function onKeyUp(event) {
+        return handleKeyUp(event);
+      }
+    }));
   };
 
-  var ChatList = function ChatList(_ref) {
-    var data = _ref.data;
-    return data.map(function (i) {
-      return i.orientation === 'left' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(LeftMessage, {
+  __signature__(ChatInput, "useState{[ msg, setMsg ]}\nuseRef{inputRef}\nuseEffect{}");
+
+  var ChatList = function ChatList() {
+    var messages = chatData.map(function (i) {
+      return i.orientation === 'right' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(RightMessage, {
         data: i,
-        key: i.id
-      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(RightMessage, {
+        key: i.timestamp
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(LeftMessage, {
         data: i,
-        key: i.id
+        key: i.timestamp
       });
     });
+
+    if (waitingForResponse) {
+      var title = "".concat(OPERATOR, ", operator");
+      var message = "".concat(OPERATOR, " is typing...");
+      messages.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(LeftMessageTyping, {
+        title: title,
+        message: message,
+        key: "typingMessage"
+      }));
+    }
+
+    return messages;
   };
 
   var LeftMessage = function LeftMessage(_ref2) {
     var data = _ref2.data;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
       className: "d-flex mb-2"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
       className: "d-flex float-left flex-grow-1"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(AvatarImage, {
-      src: data.avatar,
-      className: "mt-1"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(AvatarImage, {
+      src: _static_avatar_svg__WEBPACK_IMPORTED_MODULE_11__["default"],
+      className: "mt-1 rounded-circle"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
       className: "d-flex flex-column ml-2 flex-grow-1"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
       className: "text-secondary small"
-    }, data.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, data.message))));
+    }, OPERATOR, ", operator"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, data.output.generic[0].text))));
   };
 
   var RightMessage = function RightMessage(_ref3) {
     var data = _ref3.data;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
       className: "d-flex mb-2"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
       className: "d-flex float-right flex-grow-1"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
       className: "d-flex flex-column mr-2 flex-grow-1"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
       className: "text-secondary text-right small"
-    }, data.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    }, USER), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
       className: "text-secondary text-right"
-    }, data.message)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(UserImage, {
-      src: _static_photo_jpg__WEBPACK_IMPORTED_MODULE_7__["default"],
+    }, data.message)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(UserImage, {
+      src: _static_photo_jpg__WEBPACK_IMPORTED_MODULE_10__["default"],
       className: "mt-1 rounded-circle"
     })));
   };
 
-  var ChatView = function ChatView(_ref4) {
-    var data = _ref4.data;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-      className: "d-flex flex-column flex-grow-1"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-      className: "flex-grow-1"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(ChatList, {
-      data: data
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(ChatInput, null));
+  var LeftMessageTyping = function LeftMessageTyping(_ref4) {
+    var title = _ref4.title,
+        message = _ref4.message;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+      className: "d-flex mb-2"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+      className: "d-flex float-left flex-grow-1"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__["FontAwesomeIcon"], {
+      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faSpinner"],
+      className: "fa-pulse mb-3 d-block",
+      style: styledLoadingImage
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+      className: "d-flex flex-column ml-2 flex-grow-1"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+      className: "text-secondary small"
+    }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+      className: "text-secondary"
+    }, message))));
   };
 
-  return chatData.loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  var ChatView = function ChatView() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+      className: "d-flex flex-column flex-grow-1"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+      className: "flex-grow-1"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(ChatListContainer, {
+      className: "overflow-auto"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(ChatList, null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(ChatInput, {
+      onSubmit: handleSubmit
+    }));
+  };
+
+  return session.loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_8__["default"], {
     text: "Searching the operator..."
-  }) : chatData.error ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_LoadingError__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    error: chatData.error
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(ChatView, {
-    data: chatData.data
-  });
+  }) : session.error ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_LoadingError__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    error: session.error
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(ChatView, null);
 };
 
-__signature__(Chat, "useState{[ chatData, setChatData ]({ loading: true })}\nuseEffect{}");
+__signature__(Chat, "useState{[ session, setSession ]({ loading: true })}\nuseState{[ chatData, setChatData ]([])}\nuseState{[ waitingForResponse, setWaitingForResponse ](false)}\nuseEffect{}");
 
 var _default = Chat;
 /* harmony default export */ __webpack_exports__["default"] = (_default);
@@ -45418,9 +45608,13 @@ var _default = Chat;
   }
 
   reactHotLoader.register(SERVICE_URL, "SERVICE_URL", "/home/slavek/Projects/xcase/lib/addon-chat/src/Chat.js");
+  reactHotLoader.register(OPERATOR, "OPERATOR", "/home/slavek/Projects/xcase/lib/addon-chat/src/Chat.js");
+  reactHotLoader.register(USER, "USER", "/home/slavek/Projects/xcase/lib/addon-chat/src/Chat.js");
   reactHotLoader.register(AvatarImage, "AvatarImage", "/home/slavek/Projects/xcase/lib/addon-chat/src/Chat.js");
   reactHotLoader.register(UserImage, "UserImage", "/home/slavek/Projects/xcase/lib/addon-chat/src/Chat.js");
   reactHotLoader.register(NonResizableTextArea, "NonResizableTextArea", "/home/slavek/Projects/xcase/lib/addon-chat/src/Chat.js");
+  reactHotLoader.register(ChatListContainer, "ChatListContainer", "/home/slavek/Projects/xcase/lib/addon-chat/src/Chat.js");
+  reactHotLoader.register(styledLoadingImage, "styledLoadingImage", "/home/slavek/Projects/xcase/lib/addon-chat/src/Chat.js");
   reactHotLoader.register(Chat, "Chat", "/home/slavek/Projects/xcase/lib/addon-chat/src/Chat.js");
   reactHotLoader.register(_default, "default", "/home/slavek/Projects/xcase/lib/addon-chat/src/Chat.js");
 })();
@@ -45656,6 +45850,19 @@ react_web_component__WEBPACK_IMPORTED_MODULE_7___default.a.create( /*#__PURE__*/
   leaveModule && leaveModule(module);
 })();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
+
+/***/ }),
+
+/***/ "./static/avatar.svg":
+/*!***************************!*\
+  !*** ./static/avatar.svg ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDUxMS45OTEgNTExLjk5MSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTExLjk5MSA1MTEuOTkxOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8cGF0aCBzdHlsZT0iZmlsbDojQTBENDY4OyIgZD0iTTQzOC45MDUsMzg2LjM1M2wtMS44NDQtMC41MzFjLTI2LjQ2OC03LjEwOS0zNS40MDUtMTMuOTM4LTQ3LjE4Ny0xOC40MjINCgljLTQxLjgxMi0xNS45MjItNTIuNjg4LTI3LjM5MS01NS40NjgtMzIuODEyYy0wLjA5NC0wLjIwMy0wLjE1Ni0wLjQwNi0wLjI1LTAuNjA5bC0wLjM0NC00OC41NDZsLTc3LjgwNC0xLjEyNWwtNzcuNzk1LDEuMTI1DQoJbC0wLjM0NCw0OC41NDZjLTAuMDk0LDAuMjAzLTAuMTcyLDAuNDA2LTAuMjY2LDAuNjA5Yy0yLjc4MSw1LjQyMi0xMy42NTYsMTYuODkxLTU1LjQ2OCwzMi44MTINCgljLTExLjc4MSw0LjQ4NC0yMC43MzQsMTEuMzEyLTQ3LjIwMywxOC40MjJsLTEuODEyLDAuNTMxYy0yNC4wOTQsNy45NjktNDAuMzEyLDMwLjMxMi00MC4zMTIsNTUuNTI5djcwLjEwOWgyMjMuMTk5aDIyMy4xNzYNCgl2LTcwLjEwOUM0NzkuMTg2LDQxNi42NjUsNDYyLjk5OCwzOTQuMzIyLDQzOC45MDUsMzg2LjM1M3oiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNFQUM2QkI7IiBkPSJNMzkzLjU2MiwxOTEuMDI4YzAsODkuMzczLTg1LjIxOCwxNzEuNjIyLTEzNy41NTMsMTcxLjYyMmMtNTIuMzU4LDAtMTM3LjU2LTgyLjI0OS0xMzcuNTYtMTcxLjYyMg0KCWMwLTg5LjM3NCw2MS41OTMtMTQ4LjM0MiwxMzcuNTYtMTQ4LjM0MkMzMzEuOTcsNDIuNjg2LDM5My41NjIsMTAxLjY1NCwzOTMuNTYyLDE5MS4wMjh6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojRUQ1NTY0OyIgZD0iTTQxNywxMTcuMDkyYy03Ljk2OS0yOC43MzQtMjEuMzEyLTU0LjE4Ny0zOC41OTQtNzMuNjI0Yy0xOS0yMS4zNDMtNDIuMjgtMzQuNzY1LTY3LjM3NC0zOC44MTINCglDMjkxLjkzOSwxLjU2MiwyNzQuMDAyLDAsMjU3Ljc2LDBjLTY2LjM0MywwLTg2Ljg0MiwyNS41NDYtODguOTY3LDI4LjQ1M2wtMS44NTksMi41NjJsLTUuNDA2LDEwMC44ODlsMTMuMTQxLTIuMjAzDQoJYzE1LjY3MS0yLjY0MSwzMC41NzgtMy45ODQsNDQuMjgxLTMuOTg0YzQyLjc4LDAsNzUuODM1LDEyLjk1Myw5OC4zMDMsMzguNDgzYzQ0LjYyNCw1MC43NjUsMzQuMjQ5LDEzNS42MzksMzQuMTI0LDEzNi40ODINCglsLTMuNTYyLDI3LjMxMmwyMS4wMzEtMTcuNzhjMjUuOTA2LTIxLjkwNiw0My44MTItNTIuOTA1LDUxLjc1LTg5LjYyNEM0MjcuNjg2LDE4Ny43MTYsNDI2LjQwNSwxNTAuOTUxLDQxNywxMTcuMDkyeiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6I0RBNDQ1MzsiIGQ9Ik0xNzQuMzU1LDIyLjI5N2MtMC44OTEsMC4zOTEtMjIuMzc1LDkuOTA2LTQzLjkyMSwzMC4wNDZjLTI4Ljk2OCwyNy4wOTQtNDQuMjgxLDYwLjY0LTQ0LjI4MSw5Ni45ODMNCgljMCw4OC44MTEsMzEuMzc1LDEzOC4zMSwzMi43MDMsMTQwLjM3M2wxOS4zNDMsMjkuODc0bDAuMjgxLTM1LjU5M2MwLjQ4NC02Mi42NTUsMTQuNTMxLTEwMi40NjcsMjYuMjM0LTEyNC44MjYNCgljMTIuMjE5LTIzLjM3NCwyMS45MDYtMzAuNzY1LDIyLjY0MS0zMS4zMjdMMTc0LjM1NSwyMi4yOTd6Ii8+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8L3N2Zz4NCg==");
 
 /***/ }),
 

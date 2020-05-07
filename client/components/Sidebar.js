@@ -7,7 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled from 'styled-components';
 
 const StyledNavbar = styled(Navbar)`
-  width: 250px;
+  width: 200px;
+  min-width: 200px;
 `
 
 const Sidebar = ({ visible }) => (  

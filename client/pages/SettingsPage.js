@@ -14,7 +14,6 @@ const SettingsPage = () => {
       <thead>
         <tr>
           <th className="border-top-0" scope="col"></th>
-          <th className="border-top-0 text-secondary" scope="col">Component</th>
           <th className="border-top-0 text-secondary" scope="col">Description</th>
         </tr>
       </thead>
@@ -27,7 +26,6 @@ const SettingsPage = () => {
   const Addon = ({addon}) => (
     <tr>
       <td scope="col" className="font-weight-bold">{addon.label}</td>
-      <td scope="col">{addon.componentUrl}</td>
       <td scope="col">{addon.description}</td>
     </tr>
   )
@@ -39,8 +37,7 @@ const SettingsPage = () => {
       </h4>
       <div className="text-secondary">The page shows various tweaks and knobs noone really understand.</div>
       <h5 className="mt-4">Addons</h5>
-      <div className="text-secondary">Addons are web components rendered on the right side of the page.<br/> 
-        They are triggered by header buttons and may display additional information, utilities, various calculators etc.</div>
+      <div className="text-secondary">Addons are web components rendered on the right side of the page.</div>
       {
         addons.loading ? <Loading /> : 
         addons.error ? <LoadingError error = { products.error }/> :  

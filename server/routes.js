@@ -349,26 +349,43 @@ module.exports = function (app) {
 	app.post('/api/assistant', (req, res) => {
 		if (!config.assistant.id) {
 			return res.status(503).json({ error: 'service not available' });
-		} else if (config.assistant.id === 'TEST') {
-			setTimeout(() => {
-				return res.status(200).json({ session_id: 'test-session' });
-			}, 2000);
-		} else {
-			const payload = { assistantId: config.assistant.id };
-			assistant.createSession(payload).then(response => {
-				return res.status(200).json(response.result);
-			}).catch(err => {
-				console.log(err);
-				return res.status(500).json({ error: err.message });
-			});
-		}
+		} 
+		
+		if (config.assistant.id === 'TEST') {
+			return res.status(200).json({ session_id: 'test-session' });
+		} 
+		
+		const payload = { assistantId: config.assistant.id };
+		assistant.createSession(payload).then(response => {
+			return res.status(200).json(response.result);
+		}).catch(err => {
+			console.log(err);
+			return res.status(500).json({ error: err.message });
+		});
 	});
 
-	app.post('/api/assistant/:sesion', (req, res) => {
+	app.post('/api/assistant/:session/message', (req, res) => {
+		if (req.params.session == 'test-session') {
+			return res.json({
+				timestamp: Date.now(),
+				output: {
+					intents: [{
+						intent: "General_Greetings",
+						confidence: 1
+					}],
+					entities: [],
+					generic:[{
+						response_type:"text",
+						text: "What's up?"
+					}]
+				}
+			});
+		}
+
 		const payload = { assistantId: config.assistant.id, sessionId: req.params.session, input: req.body };
 		assistant.message(payload, (err, response) => {
 			if (err) throw err;
-      return res.json(response.result);
+      return res.json({ ...response.result, timestamp: Date.now() });
 		});
 	});
 
