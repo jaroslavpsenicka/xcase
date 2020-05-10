@@ -7,6 +7,7 @@ const CasesContext = createContext([{}, () => {}]);
 const CasesProvider = ({children}) => {
 
   const [cases, setCases] = useState({ loading: true });
+  const [selected, setSelected] = useState();
   const [creating, setCreating] = useState();
   const [updating, setUpdating] = useState();
 
@@ -56,7 +57,11 @@ const CasesProvider = ({children}) => {
   }, []);
 
   return (
-    <CasesContext.Provider value={{cases, setCases, creating, create, updating, update}}>{children}</CasesContext.Provider>
+    <CasesContext.Provider value={{
+      cases, setCases, 
+      selected, setSelected,
+      creating, create, 
+      updating, update}}>{children}</CasesContext.Provider>
   );
 }
 

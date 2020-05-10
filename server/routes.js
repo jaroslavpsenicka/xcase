@@ -351,10 +351,6 @@ module.exports = function (app) {
 			return res.status(503).json({ error: 'service not available' });
 		} 
 		
-		if (config.assistant.id === 'TEST') {
-			return res.status(200).json({ session_id: 'test-session' });
-		} 
-		
 		const payload = { assistantId: config.assistant.id };
 		assistant.createSession(payload).then(response => {
 			return res.status(200).json(response.result);
@@ -365,24 +361,12 @@ module.exports = function (app) {
 	});
 
 	app.post('/api/assistant/:session/message', (req, res) => {
-		if (req.params.session == 'test-session') {
-			return res.json({
-				timestamp: Date.now(),
-				output: {
-					intents: [{
-						intent: "General_Greetings",
-						confidence: 1
-					}],
-					entities: [],
-					generic:[{
-						response_type:"text",
-						text: "What's up?"
-					}]
-				}
-			});
-		}
-
-		const payload = { assistantId: config.assistant.id, sessionId: req.params.session, input: req.body };
+		const payload = { 
+			assistantId: config.assistant.id, 
+			sessionId: req.params.session, 
+			input: req.body.input, 
+			context: req.body.context
+		};
 		assistant.message(payload, (err, response) => {
 			if (err) throw err;
       return res.json({ ...response.result, timestamp: Date.now() });

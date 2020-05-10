@@ -45380,7 +45380,9 @@ var styledLoadingImage = {
   margin: '12px auto'
 };
 
-var Chat = function Chat() {
+var Chat = function Chat(_ref) {
+  var caseId = _ref.caseId;
+
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])({
     loading: true
   }),
@@ -45398,6 +45400,8 @@ var Chat = function Chat() {
       waitingForResponse = _useState6[0],
       setWaitingForResponse = _useState6[1];
 
+  var actionRef = Object(react__WEBPACK_IMPORTED_MODULE_3__["useRef"])(null);
+
   var handleSubmit = function handleSubmit(message) {
     setWaitingForResponse(true);
     setChatData(function (prev) {
@@ -45407,9 +45411,26 @@ var Chat = function Chat() {
         timestamp: Date.now()
       }]);
     });
-    axios__WEBPACK_IMPORTED_MODULE_4___default.a.post(SERVICE_URL + '/api/assistant/' + session.session_id + '/message', {
-      text: message
-    }).then(function (response) {
+    var payload = {
+      input: {
+        text: message,
+        options: {
+          debug: true,
+          alternate_intents: true,
+          return_context: true
+        }
+      },
+      context: {
+        skills: {
+          "main skill": {
+            user_defined: {
+              caseId: caseId
+            }
+          }
+        }
+      }
+    };
+    axios__WEBPACK_IMPORTED_MODULE_4___default.a.post(SERVICE_URL + '/api/assistant/' + session.session_id + '/message', payload).then(function (response) {
       return handleResponse(response);
     })["catch"](function (err) {
       return handleError(err);
@@ -45453,8 +45474,8 @@ var Chat = function Chat() {
     });
   }, []);
 
-  var ChatInput = function ChatInput(_ref) {
-    var onSubmit = _ref.onSubmit;
+  var ChatInput = function ChatInput(_ref2) {
+    var onSubmit = _ref2.onSubmit;
 
     var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(),
         _useState8 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState7, 2),
@@ -45471,7 +45492,7 @@ var Chat = function Chat() {
     };
 
     var handleSubmit = function handleSubmit() {
-      onSubmit(msg);
+      onSubmit(msg.replace(/^\s+|\s+$/g, ''));
       setMsg('');
       inputRef.current.focus();
     };
@@ -45479,7 +45500,7 @@ var Chat = function Chat() {
     Object(react__WEBPACK_IMPORTED_MODULE_3__["useEffect"])(function () {
       inputRef.current.focus();
     }, []);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(NonResizableTextArea, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(NonResizableTextArea, {
       type: "text",
       rows: "3",
       placeholder: "type here,  \u23CE  to submit",
@@ -45492,7 +45513,7 @@ var Chat = function Chat() {
       onKeyUp: function onKeyUp(event) {
         return handleKeyUp(event);
       }
-    }));
+    });
   };
 
   __signature__(ChatInput, "useState{[ msg, setMsg ]}\nuseRef{inputRef}\nuseEffect{}");
@@ -45521,8 +45542,52 @@ var Chat = function Chat() {
     return messages;
   };
 
-  var LeftMessage = function LeftMessage(_ref2) {
-    var data = _ref2.data;
+  var TextResponse = function TextResponse(_ref3) {
+    var output = _ref3.output;
+    var out = output.generic.find(function (o) {
+      return o.response_type === 'text';
+    });
+    return out ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, out.text) : null;
+  };
+
+  var ActionResponse = function ActionResponse(_ref4) {
+    var output = _ref4.output;
+    var out = output.generic.find(function (o) {
+      return o.response_type === 'option';
+    });
+    return out ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(ActionList, {
+      options: out.options
+    }) : null;
+  };
+
+  var ActionList = function ActionList(_ref5) {
+    var options = _ref5.options;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+      className: "text-right"
+    }, options.map(function (o) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(Action, {
+        option: o,
+        key: o.label
+      });
+    }));
+  };
+
+  var Action = function Action(_ref6) {
+    var option = _ref6.option;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", {
+      ref: actionRef,
+      className: "mt-2 ml-2 btn btn-secondary btn-sm",
+      onClick: function onClick() {
+        return actionRef.current.dispatchEvent(new CustomEvent("navigate", {
+          bubbles: true,
+          detail: '/cases/' + caseId + '/action/' + option.value.input.text
+        }));
+      }
+    }, option.label);
+  };
+
+  var LeftMessage = function LeftMessage(_ref7) {
+    var data = _ref7.data;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
       className: "d-flex mb-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
@@ -45534,11 +45599,15 @@ var Chat = function Chat() {
       className: "d-flex flex-column ml-2 flex-grow-1"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
       className: "text-secondary small"
-    }, OPERATOR, ", operator"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, data.output.generic[0].text))));
+    }, OPERATOR, ", operator"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(TextResponse, {
+      output: data.output
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(ActionResponse, {
+      output: data.output
+    }))));
   };
 
-  var RightMessage = function RightMessage(_ref3) {
-    var data = _ref3.data;
+  var RightMessage = function RightMessage(_ref8) {
+    var data = _ref8.data;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
       className: "d-flex mb-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
@@ -45555,9 +45624,9 @@ var Chat = function Chat() {
     })));
   };
 
-  var LeftMessageTyping = function LeftMessageTyping(_ref4) {
-    var title = _ref4.title,
-        message = _ref4.message;
+  var LeftMessageTyping = function LeftMessageTyping(_ref9) {
+    var title = _ref9.title,
+        message = _ref9.message;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
       className: "d-flex mb-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
@@ -45594,7 +45663,7 @@ var Chat = function Chat() {
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(ChatView, null);
 };
 
-__signature__(Chat, "useState{[ session, setSession ]({ loading: true })}\nuseState{[ chatData, setChatData ]([])}\nuseState{[ waitingForResponse, setWaitingForResponse ](false)}\nuseEffect{}");
+__signature__(Chat, "useState{[ session, setSession ]({ loading: true })}\nuseState{[ chatData, setChatData ]([])}\nuseState{[ waitingForResponse, setWaitingForResponse ](false)}\nuseRef{actionRef}\nuseEffect{}");
 
 var _default = Chat;
 /* harmony default export */ __webpack_exports__["default"] = (_default);
@@ -45815,7 +45884,11 @@ var ChatAddon = /*#__PURE__*/function (_React$Component) {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(ChatAddon, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_Chat__WEBPACK_IMPORTED_MODULE_8__["default"], null);
+      var rootElement = document.getElementById('chat-addon');
+      var caseId = rootElement ? rootElement.getAttribute('caseid') : undefined;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_Chat__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        caseId: caseId
+      });
     }
   }, {
     key: "__reactstandin__regenerateByEval",
