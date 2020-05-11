@@ -6,6 +6,8 @@ import { navigate } from 'hookrouter';
 import { AppContext } from '../AppContext';
 import { CasesContext } from '../CasesContext';
 
+const SERVICE_URL = process.env.REACT_APP_SERVICE_URL || '';
+
 const AddonView = styled.div`
   width: 300px;
   min-width: 300px;
@@ -23,7 +25,8 @@ const AddonContainer = ({ visible }) => {
       <>
         <h4 className="text-muted font-weight-light text-uppercase mb-4">{selectedAddon.label}</h4>
         <AddonTag id={selectedAddon.name + '-addon'} class="d-flex flex-grow-1" 
-          onNavigate={({detail}) => { console.log('navigate!', detail); navigate(detail)}}
+          onNavigate={({detail}) => navigate(detail)}
+          serviceUrl={SERVICE_URL}
           caseId={ selected ? selected.id : undefined } />
       </>
     )

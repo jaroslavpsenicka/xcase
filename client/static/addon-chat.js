@@ -45367,7 +45367,6 @@ var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoader
 
 
 
-var SERVICE_URL = 'http://localhost:8080';
 var OPERATOR = 'Kiki';
 var USER = 'You';
 var AvatarImage = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].img(_templateObject());
@@ -45381,7 +45380,8 @@ var styledLoadingImage = {
 };
 
 var Chat = function Chat(_ref) {
-  var caseId = _ref.caseId;
+  var caseId = _ref.caseId,
+      serviceUrl = _ref.serviceUrl;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])({
     loading: true
@@ -45415,8 +45415,6 @@ var Chat = function Chat(_ref) {
       input: {
         text: message,
         options: {
-          debug: true,
-          alternate_intents: true,
           return_context: true
         }
       },
@@ -45430,7 +45428,7 @@ var Chat = function Chat(_ref) {
         }
       }
     };
-    axios__WEBPACK_IMPORTED_MODULE_4___default.a.post(SERVICE_URL + '/api/assistant/' + session.session_id + '/message', payload).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_4___default.a.post(serviceUrl + '/api/assistant/' + session.session_id + '/message', payload).then(function (response) {
       return handleResponse(response);
     })["catch"](function (err) {
       return handleError(err);
@@ -45454,12 +45452,12 @@ var Chat = function Chat(_ref) {
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_3__["useEffect"])(function () {
-    axios__WEBPACK_IMPORTED_MODULE_4___default.a.post(SERVICE_URL + '/api/assistant').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_4___default.a.post(serviceUrl + '/api/assistant').then(function (response) {
       setSession({
         loading: false,
         session_id: response.data.session_id
       });
-      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post(SERVICE_URL + '/api/assistant/' + response.data.session_id + '/message').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post(serviceUrl + '/api/assistant/' + response.data.session_id + '/message').then(function (response) {
         return handleResponse(response);
       })["catch"](function (err) {
         return handleError(err);
@@ -45676,7 +45674,6 @@ var _default = Chat;
     return;
   }
 
-  reactHotLoader.register(SERVICE_URL, "SERVICE_URL", "/home/slavek/Projects/xcase/lib/addon-chat/src/Chat.js");
   reactHotLoader.register(OPERATOR, "OPERATOR", "/home/slavek/Projects/xcase/lib/addon-chat/src/Chat.js");
   reactHotLoader.register(USER, "USER", "/home/slavek/Projects/xcase/lib/addon-chat/src/Chat.js");
   reactHotLoader.register(AvatarImage, "AvatarImage", "/home/slavek/Projects/xcase/lib/addon-chat/src/Chat.js");
@@ -45841,11 +45838,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var react_web_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-web-component */ "./node_modules/react-web-component/src/index.js");
-/* harmony import */ var react_web_component__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_web_component__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _Chat__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Chat */ "./src/Chat.js");
+/* harmony import */ var react_web_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-web-component */ "./node_modules/react-web-component/src/index.js");
+/* harmony import */ var react_web_component__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_web_component__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _Chat__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Chat */ "./src/Chat.js");
 
 
 
@@ -45869,7 +45864,6 @@ var __signature__ = typeof reactHotLoaderGlobal !== 'undefined' ? reactHotLoader
 
 
 
-
 var ChatAddon = /*#__PURE__*/function (_React$Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default()(ChatAddon, _React$Component);
 
@@ -45886,8 +45880,10 @@ var ChatAddon = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var rootElement = document.getElementById('chat-addon');
       var caseId = rootElement ? rootElement.getAttribute('caseid') : undefined;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_Chat__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        caseId: caseId
+      var serviceUrl = rootElement ? rootElement.getAttribute('serviceurl') : undefined;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_Chat__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        caseId: caseId,
+        serviceUrl: serviceUrl
       });
     }
   }, {
@@ -45902,8 +45898,7 @@ var ChatAddon = /*#__PURE__*/function (_React$Component) {
   return ChatAddon;
 }(react__WEBPACK_IMPORTED_MODULE_5___default.a.Component);
 
-react_web_component__WEBPACK_IMPORTED_MODULE_7___default.a.create( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(ChatAddon, null), 'chat-addon', false); // ReactDOM.render(<Chat />, document.body.appendChild(document.createElement('div')));
-
+react_web_component__WEBPACK_IMPORTED_MODULE_6___default.a.create( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(ChatAddon, null), 'chat-addon', false);
 ;
 
 (function () {
