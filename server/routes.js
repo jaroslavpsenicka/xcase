@@ -381,6 +381,24 @@ module.exports = function (app) {
 		});
 	});
 
+	// Requests 
+
+	app.get('/api/requests', (req, res) => {
+		return res.status(200).json([{  
+			id: '001',
+			label: 'John Novák, price exception',
+			description: 'Get 0.1% down of the bloody interest rate.',
+			status: 'In progress',
+			updatedAt: Date.now()
+		}, {  
+			id: '002',
+			label: 'John Novák, general question',
+			description: 'About this damn industry as such.',
+			status: 'Completed',
+			updatedAt: new Date(1580263805128).getTime()
+		}]);
+	});
+
 	// Misc routes
 
 	app.get('/swagger.json', (err, res) => {

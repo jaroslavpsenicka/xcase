@@ -4,6 +4,7 @@ import loadable from '@loadable/component'
 import Axios from 'axios';
 import { CasesProvider } from './CasesContext';
 import { ProductsProvider } from './ProductsContext';
+import { RequestsProvider } from './RequestsContext';
 import { AppProvider } from './AppContext';
 
 import './App.css';
@@ -55,11 +56,13 @@ const App = () => {
       <div className="d-flex">
         <ProductsProvider>
           <CasesProvider>
-            <Sidebar visible={sidebarVisible}/>
-            <Contents>
-              <RouteContainer />
-            </Contents>
-            <AddonContainer visible={addonViewVisible} />
+            <RequestsProvider>
+              <Sidebar visible={sidebarVisible}/>
+              <Contents>
+                <RouteContainer />
+              </Contents>
+              <AddonContainer visible={addonViewVisible} />
+            </RequestsProvider>
           </CasesProvider>
         </ProductsProvider>
       </div>  
