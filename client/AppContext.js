@@ -7,14 +7,20 @@ const AppContext = createContext([{}, () => {}]);
 const AppProvider = ({children}) => {
 
   const [addons, setAddons] = useState({ loading: true });
+  const [editors, setEditors] = useState({ loading: true });
   const [selectedAddon, setSelectedAddon] = useState();
 
   const handleAddons = (response) => {
     setAddons({ loading: false, data: response.data });
-    response.data.forEach(a => registerAddon(a.componentUrl));
+    response.data.forEach(a => registerComponent(a.componentUrl));
   }
 
-  const registerAddon = (url) => {
+  const handleEditors = (response) => {
+    setEditors({ loading: false, data: response.data });
+    response.data.forEach(a => registerComponent(a.componentUrl));
+  }
+
+  const registerComponent = (url) => {
     if (url) {
       console.log('Registering component', url);
       var script = document.createElement('script');
@@ -27,10 +33,13 @@ const AppProvider = ({children}) => {
     Axios.get(SERVICE_URL + '/api/addons')
       .then(response => handleAddons(response))
       .catch(err => setAddons({ loading: false, error: err }));
+    Axios.get(SERVICE_URL + '/api/editors')
+      .then(response => handleEditors(response))
+      .catch(err => setEditors({ loading: false, error: err }));
   }, []);
 
   return (
-    <AppContext.Provider value={{addons, setAddons, selectedAddon, setSelectedAddon}}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{addons, setAddons, selectedAddon, setSelectedAddon, editors}}>{children}</AppContext.Provider>
   );
 }
 

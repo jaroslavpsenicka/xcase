@@ -1,0 +1,287 @@
+{
+  "name": "OVERVIEW",
+  "description": null,
+  "label": "Přehled případu - Vytvoření potvrzení",
+  "labelExpression": null,
+  "activities": [
+    {
+      "name": "informaceOPripadu",
+      "description": null,
+      "label": "Základní údaje",
+      "visible": "true",
+      "fields": [
+        {
+          "name": "exceptionType",
+          "description": null,
+          "label": "Typ vyjímky:",
+          "selector": { "attributes": { "value": { "name": "exceptionType" } } },
+          "editor": {
+            "name": "togglegroup-field",
+            "properties": [
+              {
+                "name": "buttons",
+                "value": [
+                  {
+                    "key": "percents",
+                    "label": "Sleva na úrokové sazbě",
+                    "editable": true,
+                    "visible": true
+                  }, {
+                    "key": "papers",
+                    "label": "Úleva na dokládání dokumentů",
+                    "editable": true,
+                    "visible": true
+                  }
+                ],
+                "propertyName": null
+              },
+              { "name": "closeActivity", "value": true, "propertyName": null }
+            ],
+            "translations": null
+          },
+          "notes": null,
+          "required": "false",
+          "visible": "true",
+          "editable": "false",
+          "forceInit": null,
+          "forceInitExpression": null,
+          "errorLabel": null,
+          "labelWidth": null,
+          "areaWidth": null,
+          "width": 6,
+          "translations": null,
+          "mwOperationNames": [],
+          "location": "DEFAULT"
+        }, {
+          "name": "exceptionValue",
+          "description": null,
+          "label": "Výše slevy:",
+          "selector": { "attributes": { "value": { "name": "exceptionValue" } } },
+          "editor": {
+            "name": "togglegroup-field",
+            "properties": [
+              {
+                "name": "buttons",
+                "value": [
+                  {
+                    "key": "01",
+                    "label": "0.1%",
+                    "editable": true,
+                    "visible": true
+                  }, {
+                    "key": "02",
+                    "label": "0.2%",
+                    "editable": true,
+                    "visible": true
+                  }, {
+                    "key": "03",
+                    "label": "0.3%",
+                    "editable": true,
+                    "visible": true
+                  }
+                ],
+                "propertyName": null
+              },
+              { "name": "closeActivity", "value": true, "propertyName": null }
+            ],
+            "translations": null
+          },
+          "notes": null,
+          "required": "false",
+          "visible": "true",
+          "editable": "false",
+          "forceInit": null,
+          "forceInitExpression": null,
+          "errorLabel": null,
+          "labelWidth": null,
+          "areaWidth": null,
+          "width": 6,
+          "translations": null,
+          "mwOperationNames": [],
+          "location": "DEFAULT"
+        }, {
+          "name": "notes",
+          "description": null,
+          "label": "Poznámka:",
+          "selector": { "attributes": { "value": { "name": "notes" } } },
+          "editor": {
+            "name": "string-field",
+            "properties": [
+              { "name": "closeActivity", "value": true, "propertyName": null }
+            ],
+            "translations": null
+          },
+          "notes": null,
+          "required": "false",
+          "visible": "true",
+          "editable": "false",
+          "forceInit": null,
+          "forceInitExpression": null,
+          "errorLabel": null,
+          "labelWidth": null,
+          "areaWidth": null,
+          "width": null,
+          "translations": null,
+          "mwOperationNames": [],
+          "location": "DEFAULT"
+        }
+      ],
+      "estimatedDuration": null,
+      "bluePrism": null,
+      "inputAttributes": null,
+      "attributeValidations": null,
+      "noReturn": null,
+      "messages": [],
+      "translations": null
+    }, {
+      "name": "dokumenty",
+      "description": null,
+      "label": "Dokumenty",
+      "visible": "true",
+      "fields": [
+        {
+          "name": "documents",
+          "description": null,
+          "label": null,
+          "selector": { "attributes": { "value": { "name": "documents" } } },
+          "editor": {
+            "name": "recordlist-field",
+            "properties": [
+              { "name": "closeActivity", "value": true, "propertyName": null }
+            ],
+            "translations": null
+          },
+          "notes": null,
+          "required": "false",
+          "visible": "true",
+          "editable": "false",
+          "forceInit": null,
+          "forceInitExpression": null,
+          "errorLabel": null,
+          "labelWidth": null,
+          "areaWidth": null,
+          "width": null,
+          "translations": null,
+          "mwOperationNames": [],
+          "location": "DEFAULT"
+        }
+      ],
+      "estimatedDuration": null,
+      "bluePrism": null,
+      "inputAttributes": null,
+      "attributeValidations": null,
+      "noReturn": null,
+      "messages": [],
+      "translations": null
+    }
+  ],
+  "transitions": null,
+  "actions": [
+    {
+      "name": "refresh_overview",
+      "description": null,
+      "type": "REFRESH_OVERVIEW",
+      "label": "Obnovit",
+      "visible": null,
+      "editable": null,
+      "primary": null,
+      "skipValidation": null,
+      "suspendUntil": null,
+      "createTaskExpression": null,
+      "specialChangeQueueExpression": null,
+      "specialChangeQueueOutputAttributes": null,
+      "justifications": null,
+      "confirmations": null
+    },
+    {
+      "name": "managingTaskStart",
+      "description": null,
+      "type": "CREATE_TASK",
+      "label": "Manažerský úkol",
+      "visible": "containsItem(_currentUserRoles, \"BRASIL_UNO_SMART_ManagingTaskManipulator\")",
+      "editable": null,
+      "primary": false,
+      "skipValidation": null,
+      "suspendUntil": null,
+      "createTaskExpression": "\"managingTask\"",
+      "specialChangeQueueExpression": null,
+      "specialChangeQueueOutputAttributes": null,
+      "justifications": null,
+      "confirmations": null
+    },
+    {
+      "name": "comment",
+      "description": null,
+      "type": "COMMENTS",
+      "label": "Komentáře",
+      "visible": null,
+      "editable": null,
+      "primary": null,
+      "skipValidation": null,
+      "suspendUntil": null,
+      "createTaskExpression": null,
+      "specialChangeQueueExpression": null,
+      "specialChangeQueueOutputAttributes": null,
+      "justifications": null,
+      "confirmations": null
+    },
+    {
+      "name": "close",
+      "description": null,
+      "type": "CLOSE",
+      "label": "Zavřít",
+      "visible": "true",
+      "editable": null,
+      "primary": true,
+      "skipValidation": null,
+      "suspendUntil": null,
+      "createTaskExpression": null,
+      "specialChangeQueueExpression": null,
+      "specialChangeQueueOutputAttributes": null,
+      "justifications": null,
+      "confirmations": null
+    }
+  ],
+  "expressions": [],
+  "header": {
+    "items": [
+      { "name": "cidla", "label": "Id žádosti", "expression": "_case.cidla" },
+      {
+        "name": "Zadavatel",
+        "label": "Zadavatel",
+        "expression": "_case.createdBy"
+      },
+      {
+        "name": "empty",
+        "label": "Datum vytvoreni příp.",
+        "expression": "(formatDate(_case.createdAt,\"full\"))"
+      },
+      {
+        "name": "clientInfo",
+        "label": "Klient",
+        "expression": "isEmptyObject(clientInfo) ? \"-\" : safeConcat(clientInfo.firstName, \" \", clientInfo.surname, \", RČ: \", clientInfo.personalId)"
+      },
+      {
+        "name": "isComplaint",
+        "label": "Stížnost nebo servis",
+        "expression": "isComplaint==true ? \"Stížnost\" : \"Servis\""
+      },
+      {
+        "name": "label",
+        "label": "Název případu",
+        "expression": "_case.label"
+      },
+      {
+        "name": "estimatedCompletionDate",
+        "label": "Orientační termín",
+        "expression": "(formatDate(_case.estimatedCompletionDate))"
+      },
+      {
+        "name": "popisPripadu",
+        "label": "Popis případu",
+        "expression": "caseSpecification ? caseSpecification.slice(0, 100) : \"(není)\""
+      }
+    ]
+  },
+  "avosDomain": null
+}

@@ -1,0 +1,134 @@
+{
+  "cidla": "SC0000000002040924",
+  "revision": 391,
+  "caseType": "CT001",
+  "createdAt": 1579183654679,
+  "createdBy": "cen85674",
+  "completedAt": null,
+  "modifiedAt": 1579184066315,
+  "urged": false,
+  "estimatedCompletionDate": 1579529254679,
+  "label": "General Question",
+  "presentationSubject": "Oleh Nahirnyy, RČ 6704302451",
+  "caseStatus": "ACTIVATED",
+  "casePhase": null,
+  "cluid": "2001-08-16-00.40.42.567951",
+  "caseTypeChangedDate": null,
+  "caseTypeChanged": false,
+  "rtodsVisible": null,
+  "attributes": [
+    {
+      "name": "clientInfo",
+      "type": "MAP",
+      "value": {
+        "birthDateToString": "30.4.1967",
+        "privateBanker": "CEN62349",
+        "personalId": "6704302451",
+        "addresses": [
+          {
+            "zipCode": "14000",
+            "country": "CZ",
+            "registryBuildingNumber": "492",
+            "l2Supplement": null,
+            "l6Country": null,
+            "city": "Praha",
+            "addressTypeValue": "Trvalá adresa",
+            "addressType": "Permanent",
+            "l1Recipient": "Oleh Nahirnyy",
+            "post": "Praha 4",
+            "street": "Sulická",
+            "l5Zipcode": "14000 Praha 4",
+            "supplement": null,
+            "buildingNumber": "52",
+            "l4City": "Krč",
+            "masterAddressId": "1-7LI816Y",
+            "l3Street": "Sulická 492/52",
+            "countryValue": "Česká republika",
+            "cityPart": "Krč"
+          }
+        ],
+        "gender": "M",
+        "clientContacts": {
+          "emails": [
+            {
+              "emailType": "E-MAIL",
+              "contactPriority": "P",
+              "emailTypeValue": "E-mail soukromý",
+              "email": "olehn@centrum.cz"
+            }
+          ],
+          "phones": [
+            {
+              "phoneType": "H-PHONE",
+              "phoneNumber": "602643420",
+              "contactPriority": "P",
+              "phoneTypeValue": "Telefon domů"
+            }
+          ]
+        },
+        "employeeStatus": null,
+        "taxResidency": "CZ",
+        "surname": "Nahirnyy",
+        "permanentAddress": "Sulická 492/52, Praha, 140 00, CZ",
+        "crsCertified": null,
+        "primaryEmail": "olehn@centrum.cz",
+        "cluid": "2001-08-16-00.40.42.567951",
+        "address": "Sulická 492/52, Praha, 140 00, CZ",
+        "citizenship": "UA",
+        "cardType": "PTP",
+        "degree": null,
+        "fullName": "Oleh Nahirnyy",
+        "primaryPhoneNumber": "602643420",
+        "taxResidencyUntil": null,
+        "clientAlerts": [],
+        "birthDate": -84416400000,
+        "servicingCategoryManual": "6",
+        "additionalDegree": null,
+        "firstName": "Oleh",
+        "channels": {
+          "PRESENT_CARD_PIN": {
+            "s24": false,
+            "channel": false,
+            "george": false
+          },
+          "UPLOAD": { "s24": false, "channel": false, "george": false },
+          "SIGN": { "s24": false, "channel": false, "george": false },
+          "VIEW": { "s24": false, "channel": false, "george": false },
+          "RECEIVE": { "s24": false, "channel": false, "george": false },
+          "ACCESS": { "s24": false, "channel": false, "george": false }
+        },
+        "cardNumber": "000513221",
+        "clientAgreements": [
+          {
+            "agreementDecision": "S",
+            "agreementType": "CSAS_BIOPO",
+            "agreementDate": 1527544800000,
+            "agreementToDate": null
+          },
+          {
+            "agreementDecision": "R",
+            "agreementType": "CSAS_ALTER",
+            "agreementDate": 1521414000000,
+            "agreementToDate": null
+          },
+          {
+            "agreementDecision": "R",
+            "agreementType": "CSAS_NFS",
+            "agreementDate": 1521414000000,
+            "agreementToDate": null
+          },
+          {
+            "agreementDecision": "S",
+            "agreementType": "CSAS_MRKT",
+            "agreementDate": 1521414000000,
+            "agreementToDate": null
+          }
+        ]
+      },
+      "modifiedBy": "cen85674",
+      "modifiedAt": 1579183804305,
+      "mapping": "CLIENT",
+      "optlock": 2
+    }  
+  ]
+}

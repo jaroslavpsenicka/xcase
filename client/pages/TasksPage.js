@@ -20,23 +20,32 @@ const StyledRequestImage = styled(FontAwesomeIcon)`
   color: #18BC9C;
 `
 
+const status = (code) => {
+  return code === 'COMPLETED' ? 'Completed' :
+    'ACTIVATED' ? 'In progress' :
+    'Unknown';
+}
+
 const TasksPage = () => {
 
   const [ requests ] = useContext(RequestsContext);
 
-  const RequestRow = ({ request }) => (
-    <div className="p-2 pl-3 mb-1 bg-white text-secondary">
-      <div className="mr-5">
-        <StyledRequestImage icon={faHandPaper} size="lg" />
-        <h5 className="text-ellipsis pr-3 ml-5 mb-0 text-primary">
-          <A href={`/requests/${request.id}`}>{request.label}</A>
-        </h5>
-        <div className="text-secondary ml-5">{request.description ? request.description : 'No details.'}</div>
-        <div className="text-secondary ml-5 mt-2"><strong>{request.status}</strong>, 
-          last update: <strong>{vagueTime.get({ to: request.updatedAt })}</strong></div>
+  const RequestRow = ({ request }) => {
+    const textClass = request.caseStatus === 'COMPLETED' ? 'text-secondary' : '';
+    return (
+      <div className="p-2 pl-3 mb-1 bg-white text-secondary">
+        <div className="mr-5">
+          <StyledRequestImage icon={faHandPaper} size="lg" className={textClass} />
+          <h5 className="text-ellipsis pr-3 ml-5 mb-0 text-primary">
+            <A href={`/requests/${request.cidla}`} className={textClass}>{request.label}</A>
+          </h5>
+          <div className="text-secondary ml-5">{request.presentationSubject}</div>
+          <div className="text-secondary ml-5 mt-2"><strong>{status(request.caseStatus)}</strong>, 
+            last update: <strong>{vagueTime.get({ to: request.modifiedAt })}</strong></div>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 
   const NoRequests = () => (
     <div className="text-secondary mt-4">No requests so far.</div>
@@ -46,11 +55,11 @@ const TasksPage = () => {
     <div className="col-md-6" >
       <h5>My Requests</h5>
       <div className="text-secondary mb-4">To issue a request, simply work with the case or have a chat with Kiki.
-      In other words, there is no new-request button with zillion of task types and options.</div>
+      In other words, there is no new-request button with zillion of types and options.</div>
       { 
         requests.loading ? <Loading /> :
         requests.error ? <LoadingError error={requests.error} /> :
-        requests.data ? requests.data.map(r => <RequestRow request={r} key={r.id} />) : 
+        requests.data ? requests.data.map(r => <RequestRow request={r} key={r.cidla} />) : 
         <NoRequests />
       }
     </div>
@@ -60,7 +69,7 @@ const TasksPage = () => {
     <div className="col-md-6" >
       <h5>My Tasks</h5>
       <div className="text-secondary mb-2">Here comes the list of tasks you are about to complete. The grey ones are
-      still kind of OK, however, you better to do the yellow and red ones.</div>
+      still kind of OK, however, you better finish the yellow and red ones.</div>
       <img className="mx-auto d-block mt-4 w-50" src="/job-done.png"/>
     </div>
   )

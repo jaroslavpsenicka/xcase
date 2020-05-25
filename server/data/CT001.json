@@ -1,0 +1,116 @@
+{
+  "name": "OVERVIEW",
+  "description": null,
+  "label": "General Question",
+  "labelExpression": null,
+  "activities": [],
+  "transitions": null,
+  "actions": [
+    {
+      "name": "refresh_overview",
+      "description": null,
+      "type": "REFRESH_OVERVIEW",
+      "label": "Obnovit",
+      "visible": null,
+      "editable": null,
+      "primary": null,
+      "skipValidation": null,
+      "suspendUntil": null,
+      "createTaskExpression": null,
+      "specialChangeQueueExpression": null,
+      "specialChangeQueueOutputAttributes": null,
+      "justifications": null,
+      "confirmations": null
+    },
+    {
+      "name": "managingTaskStart",
+      "description": null,
+      "type": "CREATE_TASK",
+      "label": "Manažerský úkol",
+      "visible": "containsItem(_currentUserRoles, \"BRASIL_UNO_SMART_ManagingTaskManipulator\")",
+      "editable": null,
+      "primary": false,
+      "skipValidation": null,
+      "suspendUntil": null,
+      "createTaskExpression": "\"managingTask\"",
+      "specialChangeQueueExpression": null,
+      "specialChangeQueueOutputAttributes": null,
+      "justifications": null,
+      "confirmations": null
+    },
+    {
+      "name": "comment",
+      "description": null,
+      "type": "COMMENTS",
+      "label": "Komentáře",
+      "visible": null,
+      "editable": null,
+      "primary": null,
+      "skipValidation": null,
+      "suspendUntil": null,
+      "createTaskExpression": null,
+      "specialChangeQueueExpression": null,
+      "specialChangeQueueOutputAttributes": null,
+      "justifications": null,
+      "confirmations": null
+    },
+    {
+      "name": "close",
+      "description": null,
+      "type": "CLOSE",
+      "label": "Zavřít",
+      "visible": "true",
+      "editable": null,
+      "primary": true,
+      "skipValidation": null,
+      "suspendUntil": null,
+      "createTaskExpression": null,
+      "specialChangeQueueExpression": null,
+      "specialChangeQueueOutputAttributes": null,
+      "justifications": null,
+      "confirmations": null
+    }
+  ],
+  "expressions": [],
+  "header": {
+    "items": [
+      { "name": "cidla", "label": "Id žádosti", "expression": "_case.cidla" },
+      {
+        "name": "Zadavatel",
+        "label": "Zadavatel",
+        "expression": "_case.createdBy"
+      },
+      {
+        "name": "empty",
+        "label": "Datum vytvoreni příp.",
+        "expression": "(formatDate(_case.createdAt,\"full\"))"
+      },
+      {
+        "name": "clientInfo",
+        "label": "Klient",
+        "expression": "isEmptyObject(clientInfo) ? \"-\" : safeConcat(clientInfo.firstName, \" \", clientInfo.surname, \", RČ: \", clientInfo.personalId)"
+      },
+      {
+        "name": "isComplaint",
+        "label": "Stížnost nebo servis",
+        "expression": "isComplaint==true ? \"Stížnost\" : \"Servis\""
+      },
+      {
+        "name": "label",
+        "label": "Název případu",
+        "expression": "_case.label"
+      },
+      {
+        "name": "estimatedCompletionDate",
+        "label": "Orientační termín",
+        "expression": "(formatDate(_case.estimatedCompletionDate))"
+      },
+      {
+        "name": "popisPripadu",
+        "label": "Popis případu",
+        "expression": "caseSpecification ? caseSpecification.slice(0, 100) : \"(není)\""
+      }
+    ]
+  },
+  "avosDomain": null
+}

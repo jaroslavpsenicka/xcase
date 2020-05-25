@@ -9,6 +9,7 @@ const config = require('./config');
 const log4js = require('log4js');
 const multer = require('multer');
 const fs = require('fs');
+const path = require('path');
 const AssistantV2 = require('ibm-watson/assistant/v2');
 const { IamAuthenticator } = require('ibm-watson/auth');
 
@@ -381,24 +382,79 @@ module.exports = function (app) {
 		});
 	});
 
+	// Editors
+
+	app.get('/api/editors', (req, res) => {
+		return res.status(200).json([{  
+			name: 'string-field',
+			componentUrl: '/string-field.js'
+		}, {  
+			name: 'togglegroup-field',
+			componentUrl: '/togglegroup-field.js'
+		}, {  
+			name: 'recordlist-field',
+			componentUrl: '/recordlist-field.js'
+		}]);
+	});
+
 	// Requests 
 
 	app.get('/api/requests', (req, res) => {
 		return res.status(200).json([{  
+			cidla: "SC0000000002040924",
+			casePhase: null,
+			caseStatus: "ACTIVATED",
+			caseType: "CT103",
+			completedAt: null,
+			createdAt: 1579183654679,
+			createdBy: "yxf04349",
+			label: "Cenová vyjímka",
+			loadedAttributes: null,
+			modifiedAt: Date.now() - 1000000,
+			presentationSubject: "Oleh Nahirnyy, RČ 6704302451",
+			urged: false
+		}, {
+			cidla: "SC0000000000000001",
+			casePhase: null,
+			caseStatus: 'COMPLETED',
+			caseType: "CT001",
+			completedAt: null,
+			createdAt: 1579182654679,
+			createdBy: "yxf04349",
+			label: 'General question',
+			loadedAttributes: null,
+			modifiedAt: 1579182066315,
+			presentationSubject: 'About this damn industry as such.',
+			urged: true
+		}]);
+	});
+
+	app.get('/api/requests/:id', (req, res) => {
+		fs.readFile(path.join(__dirname, `data/${req.params.id}.json`), 'utf-8', (err, data) => {
+			if (err) throw err;
+      return res.json(JSON.parse(data));
+		});
+	})
+
+	// Tasks 
+
+	app.get('/api/tasks', (req, res) => {
+		return res.status(200).json([{  
 			id: '001',
-			label: 'John Novák, price exception',
-			description: 'Get 0.1% down of the bloody interest rate.',
-			status: 'In progress',
-			updatedAt: Date.now()
+			label: 'Mary Vomaczkowa, missing documents',
+			description: 'Birth certificate seems to be a bit weird',
+			severity: 'medium',
+			status: 'in-progress',
+			createdAt: Date.now() - 100000				
 		}, {  
 			id: '002',
 			label: 'John Novák, general question',
 			description: 'About this damn industry as such.',
-			status: 'Completed',
+			status: 'completed',
 			updatedAt: new Date(1580263805128).getTime()
 		}]);
 	});
-
+	
 	// Misc routes
 
 	app.get('/swagger.json', (err, res) => {

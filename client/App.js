@@ -24,16 +24,18 @@ const App = () => {
   const CasesPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/CasesPage'));  
   const TasksPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/TasksPage'));  
   const ProductDetailPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/ProductDetailPage'));  
+  const RequestDetailPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/RequestDetailPage'));  
   const ProductsPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/ProductsPage'));
   const SettingsPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/SettingsPage'));  
   const NoPage = loadable(() => import(/* webpackChunkName: "pages" */ './pages/NoPage'));
 
   const routes = {
-    "/create-case/:productName": ({productName}) => <CaseCreatePage productName={productName}/>,
+    "/create-case/:productName": ({productName}) => <CaseCreatePage productName={productName} />,
     "/cases": () => <CasesPage />,
     "/cases/:id": ({id}) => <CaseDetailPage caseId={id} />,
-    "/cases/:id/action/:name": ({id, name}) => <CaseActionPage caseId={id} name={name}/>,
+    "/cases/:id/action/:name": ({id, name}) => <CaseActionPage caseId={id} name={name} />,
     "/tasks": () => <TasksPage />,
+    "/requests/:id": ({id}) => <RequestDetailPage requestId={id} />,
     "/products": () => <ProductsPage />,
     "/products/:name": ({name}) => <ProductDetailPage name={name} />,
     "/settings": () => <SettingsPage />

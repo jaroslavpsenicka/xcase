@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
 import { ProductsContext } from '../ProductsContext';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 import Loading from '../components/Loading';
 import LoadingError from '../components/LoadingError';
