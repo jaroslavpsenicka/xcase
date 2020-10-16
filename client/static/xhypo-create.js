@@ -2699,7 +2699,7 @@ Object(react_webcomponentify__WEBPACK_IMPORTED_MODULE_1__["registerAsWebComponen
     return;
   }
 
-  reactHotLoader.register(XHypoCreateComponent, "XHypoCreateComponent", "/home/slavek/Projects/xcase/lib/xhypo-create/src/index.js");
+  reactHotLoader.register(XHypoCreateComponent, "XHypoCreateComponent", "/Users/slavek/Projects/xcase/lib/xhypo-create/src/index.js");
 })();
 
 ;
