@@ -160,6 +160,7 @@ module.exports = function (app) {
 					res.status(201).send(model);
 				});
 			}).catch(err => {
+				logger.error('error registering the product', err);
 				return res.status(400).json({
 					error: err.config.url ? err.message + ', ' + err.config.url : err.message
 				});
